@@ -1,6 +1,7 @@
 var Host = require('socket.engine').host; 
 var h = new Host(addr = "127.0.0.1", port = 8000);
 h.start();
+
 h.on("speed-fl", (data) => {
     document.getElementById("speed-fl").innerHTML = data;
 });

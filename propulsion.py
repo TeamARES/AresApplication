@@ -23,6 +23,7 @@ class Motor_Controls:
             self.s = socket.socket()
             self.s.connect((self.host, self.port))
         self.deaclereration_counter = time.perf_counter()
+        self.Node_counter = time.perf_counter()
         self.listener = keyboard.Listener(
         on_press=self.on_press,
         on_release=self.on_release)
@@ -33,23 +34,26 @@ class Motor_Controls:
         self.decelerate_thread.start()
     
     def sendDataToNode(self):
-        self.motorspeed1 = self.forwardBackwardSpeed
-        self.motorspeed2 = self.forwardBackwardSpeed
-        self.motorspeed1 -= self.leftRightSpeed
-        self.motorspeed2 += self.leftRightSpeed
-        if (self.motorspeed1 > 100):
-            self.motorspeed1 = 100
-        elif (self.motorspeed1 < -100):
-            self.motorspeed1 = -100
-            
-        if (self.motorspeed2 > 100):
-            self.motorspeed2 = 100
-        elif (self.motorspeed2 < -100):
-            self.motorspeed2 = -100
-        self.c.write("speed-fl", self.motorspeed2)
-        self.c.write("speed-bl", self.motorspeed2)
-        self.c.write("speed-br", self.motorspeed1)
-        self.c.write("speed-fr", self.motorspeed1)
+        count_now = time.perf_counter()
+        if count_now - self.Node_counter >= 0.2:
+            self.motorspeed1 = self.forwardBackwardSpeed
+            self.motorspeed2 = self.forwardBackwardSpeed
+            self.motorspeed1 -= self.leftRightSpeed
+            self.motorspeed2 += self.leftRightSpeed
+            if (self.motorspeed1 > 100):
+                self.motorspeed1 = 100
+            elif (self.motorspeed1 < -100):
+                self.motorspeed1 = -100
+                
+            if (self.motorspeed2 > 100):
+                self.motorspeed2 = 100
+            elif (self.motorspeed2 < -100):
+                self.motorspeed2 = -100
+            self.c.write("speed-fl", self.motorspeed2)
+            self.c.write("speed-bl", self.motorspeed2)
+            self.c.write("speed-br", self.motorspeed1)
+            self.c.write("speed-fr", self.motorspeed1)
+            self.Node_counter = time.perf_counter()
 
     def sendDatatoXavier(self):
         if self.is_server_running == False:
@@ -139,3 +143,4 @@ if __name__ == "__main__":
     args = vars(ap.parse_args())
     motor_controls = Motor_Controls(args["server"])
     motor_controls.run()
+    del motor_controls

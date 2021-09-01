@@ -8,6 +8,7 @@ let mainWindow;
 let propulsion_speed;
 let prop_terminal;
 let video_window;
+let combined_prop_window;
 function createMainWindow(){
     mainWindow = new BrowserWindow({
         height: 450, 
@@ -86,6 +87,7 @@ function createVideoWindow(){
 		video_window = null;
 	});
 }
+
 app.on("ready", function() {
     createMainWindow();
     ipcMain.on('open-propulsion', function(){
@@ -93,10 +95,10 @@ app.on("ready", function() {
             create_propulsion_speed_window();
         propulsion_speed.show();
 
-        if (prop_terminal == null)
+       if (prop_terminal == null)
             create_Terminal_propulsion();
         prop_terminal.show();
-
+        
         if (video_window == null)
             createVideoWindow()
         video_window.show();
