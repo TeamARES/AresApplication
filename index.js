@@ -4,15 +4,23 @@ const os = require("os");
 const path = require("path");
 var shell = os.platform() === "win32" ? "powershell.exe" : "bash";
 
+var width = 1440;
+var height = 824;
+var width_sidebar = width / 6;
+var height_prop_terminal = 450;
+
 let mainWindow;
 let propulsion_speed;
 let prop_terminal;
 let video_window;
-let combined_prop_window;
+let sidebar;
 function createMainWindow(){
     mainWindow = new BrowserWindow({
-        height: 450, 
-        width: 800, 
+        height: height, 
+        width: width - width_sidebar, 
+        frame: false,
+        x: width_sidebar, 
+        y: 0,
         webPreferences: {
             devTools: true,
 			contextIsolation: false,
@@ -25,11 +33,34 @@ function createMainWindow(){
         mainWindow = null;
     });
 }
+function createSideBar(){
+    sidebar = new BrowserWindow({
+        height: height, 
+        width: width_sidebar, 
+        x: 0, 
+        y: 0,
+        frame: false,
+        webPreferences: {
+            devTools: true,
+			contextIsolation: false,
+      		enableRemoteModule: true,
+            nodeIntegration: true
+        }
+    });
+    sidebar.loadURL(`file://${__dirname}/Frontend\ Files/SideBar/index.html`);
+    sidebar.on("closed", function() {
+        sidebar = null;
+    });
+}
+
 function create_propulsion_speed_window(){
     propulsion_speed = new BrowserWindow({
-        height: 600, 
-        width: 1200, 
+        height: height_prop_terminal, 
+        width: (width - width_sidebar) / 2, 
         show: false,
+        frame: false,
+        x: width_sidebar,
+        y: height_prop_terminal,
         webPreferences: {
 			contextIsolation: false,
       		enableRemoteModule: true,
@@ -43,9 +74,12 @@ function create_propulsion_speed_window(){
 }
 function create_Terminal_propulsion(){
     prop_terminal = new BrowserWindow({
-        height: 600, 
-        width: 800, 
+        height: height_prop_terminal, 
+        width: (width - width_sidebar) / 2, 
         show: false,
+        frame: false,
+        x: width_sidebar + (width - width_sidebar) / 2,
+        y: height_prop_terminal,
         webPreferences: {
 			contextIsolation: false,
       		enableRemoteModule: true,
@@ -76,8 +110,11 @@ function create_Terminal_propulsion(){
 }
 function createVideoWindow(){
 	video_window = new BrowserWindow({
-		height: 400, 
-		width: 2000, 
+		height: height - height_prop_terminal, 
+		width: (width - width_sidebar), 
+        frame: false,
+        x: width_sidebar,
+        y: 0,
 		webPreferences: {
 			nodeIntegration: true
 		}
@@ -90,6 +127,7 @@ function createVideoWindow(){
 
 app.on("ready", function() {
     createMainWindow();
+    createSideBar();
     ipcMain.on('open-propulsion', function(){
         if (propulsion_speed == null) 
             create_propulsion_speed_window();
@@ -108,5 +146,9 @@ app.on("ready", function() {
         if (mainWindow == null)
             createMainWindow();
         mainWindow.show()
+
+        if (sidebar == null)
+            createSideBar()
+        sidebar.show()
     });
 });

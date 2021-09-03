@@ -1,6 +1,7 @@
 from pynput import keyboard
 import socket
 import argparse
+import requests
 
 class RoboticArm:
     def __init__(self, is_server_running):
@@ -16,9 +17,8 @@ class RoboticArm:
         self.is_server_running = is_server_running
         if self.is_server_running == True:
             self.s = socket.socket()
-            self.host = '192.168.29.87'
-
-            self.port = 9999  # Must be same as that in server.py
+            self.host = '192.168.29.139'
+            self.port = 9998  # Must be same as that in server.py
             print('If you dont see working fine as the next msg , change the host as the ip adress of pi')
             # In client.py we use another way to bind host and port together by using connect function()
             self.s.connect((self.host, self.port))
@@ -75,9 +75,15 @@ class RoboticArm:
         if(format(key) in ["'1'","'2'","'3'","'4'","'5'","'6'"]):
             self.numkey = key  
         elif(format(key) == 'Key.up'):
-            self.forward(self.numkey)
+            if self.numkey == "":
+                print("Please select a motor")
+            else:
+                self.forward(self.numkey)
         elif(format(key) == 'Key.down'):
-            self.back(self.numkey)
+            if self.numkey == "":
+                print("Please select a motor")
+            else:
+                self.backward(self.numkey)
         elif(format(key) == 'Key.enter'):
             print("Deleting arm")
             self.done = True
@@ -91,6 +97,12 @@ if __name__ == "__main__":
     ap = argparse.ArgumentParser()
     ap.add_argument("-i", "--server", type = bool, default = False, help = "Is the server running")
     args = vars(ap.parse_args())
+    if args["server"] == True:
+        try:
+            requests.get(server, timeout = 0.1)
+        except requests.exceptions.ReadTimeout: 
+            pass
+
     arm = RoboticArm(args["server"])
     arm.run()
     del arm

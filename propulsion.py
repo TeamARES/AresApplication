@@ -4,6 +4,9 @@ from pynput import keyboard
 import threading 
 import argparse
 from socketengine import client
+import requests
+
+server = 'http://192.168.29.139:8001/propulsion'
 
 class Motor_Controls:
     def __init__(self, is_server_running):
@@ -141,6 +144,12 @@ if __name__ == "__main__":
     ap = argparse.ArgumentParser()
     ap.add_argument("-i", "--server", type = bool, default = False, help = "Is the server running")
     args = vars(ap.parse_args())
+    if args["server"] == True:
+        try:
+            requests.get(server, timeout = 0.1)
+        except requests.exceptions.ReadTimeout: 
+            pass
+
     motor_controls = Motor_Controls(args["server"])
     motor_controls.run()
     del motor_controls
