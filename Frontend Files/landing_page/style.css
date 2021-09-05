@@ -232,7 +232,6 @@ canvas {
   /* marin: 0; */
 } 
 
-}
 .bg {
   color: white;
   background-color: black;
@@ -292,21 +291,22 @@ body {
   justify-content: space-around;
 }
 .wrap {
-  height: 70%;
+  height: 30%;
   display: flex;
   background-color: black;
   margin-top: 7em;
   align-items: center;
+  justify-content: space-around
 }
 .content {
   display: flex;
-  padding-left: 7em;
   height: 50%;
   color: white;
   background-color: black;
-  width: 75%;
+  width: 20%;
   align-items: center;
   justify-content: space-around;
+  margin-top: -5em;
 }
 .qrcode {
   width: 25%;
@@ -367,6 +367,8 @@ h2 {
 }
 
 .box{
+  height: 50%;
+  margin: 5px;
   display: flex;
   align-items: center;
   color: #009e66;
@@ -374,6 +376,7 @@ h2 {
   padding: 20px;
   border-radius: 15px;
   transition: 0.6s ease-in-out;
+  justify-content: space-around;
 }
 
 .tag{

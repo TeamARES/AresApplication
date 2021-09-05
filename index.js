@@ -6,7 +6,7 @@ var shell = os.platform() === "win32" ? "powershell.exe" : "bash";
 
 var width = 1440;
 var height = 824;
-var width_sidebar = width / 6;
+var width_sidebar = 254;
 var height_prop_terminal = 450;
 
 let mainWindow;
@@ -28,7 +28,7 @@ function createMainWindow(){
             nodeIntegration: true
         }
     });
-    mainWindow.loadURL(`file://${__dirname}/index.html`);
+    mainWindow.loadURL(`file://${__dirname}/Frontend\ Files/landing_page/index.html`);
     mainWindow.on("closed", function() {
         mainWindow = null;
     });
