@@ -7,7 +7,7 @@ var shell = os.platform() === "win32" ? "powershell.exe" : "bash";
 var width = 1440;
 var height = 824;
 var width_sidebar = 254;
-var height_prop_terminal = 450;
+var height_prop_terminal = 274;
 
 let mainWindow;
 let propulsion_speed;
@@ -55,12 +55,12 @@ function createSideBar(){
 
 function create_propulsion_speed_window(){
     propulsion_speed = new BrowserWindow({
-        height: height_prop_terminal, 
+        height: height - height_prop_terminal, 
         width: (width - width_sidebar) / 2, 
         show: false,
         frame: false,
-        x: width_sidebar,
-        y: height_prop_terminal,
+        x: width_sidebar + (width - width_sidebar) / 2,
+        y: 0,
         webPreferences: {
 			contextIsolation: false,
       		enableRemoteModule: true,
@@ -75,11 +75,11 @@ function create_propulsion_speed_window(){
 function create_Terminal_propulsion(){
     prop_terminal = new BrowserWindow({
         height: height_prop_terminal, 
-        width: (width - width_sidebar) / 2, 
+        width: (width - width_sidebar), 
         show: false,
         frame: false,
-        x: width_sidebar + (width - width_sidebar) / 2,
-        y: height_prop_terminal,
+        x: width_sidebar,
+        y: height - height_prop_terminal + 25,
         webPreferences: {
 			contextIsolation: false,
       		enableRemoteModule: true,
@@ -111,7 +111,7 @@ function create_Terminal_propulsion(){
 function createVideoWindow(){
 	video_window = new BrowserWindow({
 		height: height - height_prop_terminal, 
-		width: (width - width_sidebar), 
+		width: (width - width_sidebar) / 2, 
         frame: false,
         x: width_sidebar,
         y: 0,
