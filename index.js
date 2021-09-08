@@ -7,7 +7,8 @@ var shell = os.platform() === "win32" ? "powershell.exe" : "bash";
 var width = 1440;
 var height = 824;
 var width_sidebar = 254;
-var height_prop_terminal = 274;
+var height_prop_terminal = 224;
+var width_video = 700
 
 let mainWindow;
 let propulsion_speed;
@@ -56,10 +57,10 @@ function createSideBar(){
 function create_propulsion_speed_window(){
     propulsion_speed = new BrowserWindow({
         height: height - height_prop_terminal, 
-        width: (width - width_sidebar) / 2, 
+        width: (width - width_sidebar) - width_video, 
         show: false,
         frame: false,
-        x: width_sidebar + (width - width_sidebar) / 2,
+        x: width_sidebar + width_video,
         y: 0,
         webPreferences: {
 			contextIsolation: false,
@@ -75,10 +76,10 @@ function create_propulsion_speed_window(){
 function create_Terminal_propulsion(){
     prop_terminal = new BrowserWindow({
         height: height_prop_terminal, 
-        width: (width - width_sidebar), 
+        width: (width - width_sidebar) - width_video, 
         show: false,
         frame: false,
-        x: width_sidebar,
+        x: width_sidebar + width_video,
         y: height - height_prop_terminal + 25,
         webPreferences: {
 			contextIsolation: false,
@@ -110,8 +111,8 @@ function create_Terminal_propulsion(){
 }
 function createVideoWindow(){
 	video_window = new BrowserWindow({
-		height: height - height_prop_terminal, 
-		width: (width - width_sidebar) / 2, 
+		height: height, 
+		width: width_video, 
         frame: false,
         x: width_sidebar,
         y: 0,
@@ -119,7 +120,7 @@ function createVideoWindow(){
 			nodeIntegration: true
 		}
 	});
-	video_window.loadURL("http://192.168.29.24:8000/");
+	video_window.loadURL(`file://${__dirname}/Frontend\ Files/video_stream/index.html`);
 	video_window.on("closed", function() {
 		video_window = null;
 	});
