@@ -1,0 +1,110 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins" , sans-serif;
+}
+body{
+  background-color: rgba(22, 22, 22, 1);
+  font-family: "Poppins" , sans-serif;
+  height: 100vh;
+  width: 100vw;
+}
+.Button {
+    background-color: rgba(22, 22, 22, 0.3);
+    border-radius: 50%;
+    border:2px solid #fff;
+    height: 50px;
+    width: 20%;
+}
+
+.image {
+    width: 25em;
+    height: 80vh;
+    margin-top: 0em;
+    margin-left: -2em;
+}
+
+.VS {
+    color:#fff;
+    font-size: 20px;
+    font-weight: 400;
+    white-space: nowrap;
+    margin-top: 1em;
+}
+
+.V1 {
+    color:#fff;
+    font-size: 15px;
+    font-weight: 400;
+    white-space: nowrap;
+}
+
+.container {
+    position: relative;
+}
+
+.label1 {
+    background-color: rgba(22, 22, 22, 0.3);;
+    width: 10em;
+    height: 10em;
+    margin-top: -23em;
+    margin-left: -24em;
+}
+
+.label2 {
+    background-color: rgba(22, 22, 22, 0.3);;
+    width: 10em;
+    height: 10em;
+    margin-top: 1em;
+    margin-left: -12em;
+}
+
+.label3 {
+    background-color: rgba(22, 22, 22, 0.3);;
+    width: 10em;
+    height: 10em;
+    margin-top: -25em;
+    margin-left: -12em;
+}
+
+.label4 {
+    background-color: rgba(22, 22, 22, 0.3);;
+    width: 10em;
+    height: 10em;
+    margin-top: 13em;
+    margin-left: 2em;
+}
+
+.label5 {
+    background-color: rgba(22, 22, 22, 0.3);;
+    width: 10em;
+    height: 10em;
+    margin-top: -22em;
+}
+
+.label6 {
+    background-color: rgba(22, 22, 22, 0.3);;
+    width: 10em;
+    height: 10em;
+    margin-top: -18em;
+    margin-left: 22em;
+}
+
+.V2 {
+    color:#fff;
+    font-size: 15px;
+    font-weight: 400;
+    white-space: nowrap;
+    margin-top: 16.5em;
+    margin-left: 1em;
+}
+
+span.name { 
+    color:#fff;
+    font-size: 15px;
+    font-weight: 450;
+    white-space: nowrap;
+    color: red;
+}

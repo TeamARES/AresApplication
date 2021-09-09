@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <link rel="stylesheet" media="screen" href="./style.css" />
+    </head>
+    <body>
+        <center>
+            <h1 class = "VS"> Robotic Arm Motors </h1> 
+            <div class = "containter">
+                <img class = "image" src = "arm.png">
+                <div class = "label1">
+                    <button id = "b1" class = "Button"> </button>
+                    <h1 class = "V1"> Claw Roll </h1> 
+                </div>
+                <div class = "label2">
+                    <button id = "b2" class = "Button"> </button>
+                    <h1 class = "V1"> Claw Pitch </h1>
+                </div>
+                <div class = "label3">
+                    <button id = "b3" class = "Button"> </button>
+                    <h1 class = "V1"> Lead Screw </h1>
+                </div>
+                <div class = "label4">
+                    <button id = "b4" class = "Button"> </button>
+                    <h1 class = "V1"> Base Motor </h1>
+                </div>
+                <div class = "label5">
+                    <button id = "b5" class = "Button"> </button>
+                    <h1 class = "V1"> Arm-Arm </h1>
+                    <h1 class = "V1"> Actuator </h1>
+                </div>
+                <div class = "label6">
+                    <button id = "b6" class = "Button"> </button>
+                    <h1 class = "V1"> Base-Arm </h1>
+                    <h1 class = "V1"> Actuator </h1>
+                </div>
+            </div>
+        </center>
+        <h1 class = "V2"> Status: <span class = "name" id = "status"> Inactive </span></h1>
+        <script src = 'comm_arm.js'></script>
+    </body>
+</html>

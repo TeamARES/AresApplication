@@ -14,6 +14,7 @@ class Motor_Controls:
         self.motorspeed1 = 0
         self.motorspeed2 = 0
         self.stepsize = 5
+        self.active = False
         self.dec_stepsize = 5
         self.forwardBackwardSpeed = 0
         self.leftRightSpeed = 0
@@ -103,9 +104,31 @@ class Motor_Controls:
         stringData = '0,' + str(self.forwardBackwardSpeed) + ',' + str(self.leftRightSpeed)
         print(" - ",stringData)
 
+    def deactivate(self):
+        self.active = False
+        self.c.write("status_prop", -1)
+
+    def activate(self):
+        self.active = True
+        self.c.write("status_prop", 1)
+
     def on_press(self, key):
         self.deaclereration_counter = time.perf_counter()
-        if(format(key)=='Key.up'):
+        if(format(key) == "'a'"):
+            self.stopMotor()
+            time.sleep(0.5)
+            self.deactivate()
+        elif(format(key) == "'p'"):
+            self.activate()
+        elif(format(key) == "'s'"):
+            self.stopMotor()
+            time.sleep(0.5)
+            self.deactivate()
+        elif self.active == False:
+            print("Propulsion is inactive right now.")
+            print("If you want to activate propulsion, then press the p key!")
+            return
+        elif(format(key)=='Key.up'):
             self.increaseForwardBackwardSpeed()
         elif(format(key)=='Key.down'):
             self.decreaseForwardBackwardSpeed()
@@ -123,6 +146,8 @@ class Motor_Controls:
 
     def decelerate(self):
         while True:
+            if self.active == False:
+                continue
             stop_deaclereration_counter = time.perf_counter()
             if stop_deaclereration_counter - self.deaclereration_counter >= 0.1:
                 if self.forwardBackwardSpeed >= self.dec_stepsize:

@@ -4,8 +4,9 @@ import argparse
 import requests
 from socketengine import client
 import requests
+from flask import Flask, request, Response
 
-class RoboticArm:
+class Science:
     def __init__(self, is_server_running):
         self.speeds = dict()
         self.speeds.update({1 : 1})
@@ -14,15 +15,19 @@ class RoboticArm:
         self.speeds.update({4 : 1})
         self.speeds.update({5 : 1})
         self.speeds.update({6 : 1})
+        self.speeds.update({7 : 1})
+        self.speeds.update({8 : 1})
         self.numkey = ""
+        self.img_no = 0
+        self.add_capture = "http://192.168.29.13:8000/capture"
         self.active = False
-        self.c = client(addr = "127.0.0.1", port = 8001)
+        self.c = client(addr = "127.0.0.1", port = 8002)
         self.c.start()
         self.is_server_running = is_server_running
         if self.is_server_running == True:
             self.s = socket.socket()
             self.host = '192.168.29.139'
-            self.port = 9998  # Must be same as that in server.py
+            self.port = 9997  # Must be same as that in server.py
             print('If you dont see working fine as the next msg , change the host as the ip adress of pi')
             # In client.py we use another way to bind host and port together by using connect function()
             self.s.connect((self.host, self.port))
@@ -38,7 +43,7 @@ class RoboticArm:
             continue
 
     def sendDataToNode(self, m_no, pos):
-        for motor in range(1, 7):
+        for motor in range(1, 9):
             if motor == m_no:
                 self.c.write("m" + str(motor), pos)
             else:
@@ -85,28 +90,36 @@ class RoboticArm:
         self.sendDataToNode(-1, 1)
     
     def deactivate(self):
+        self.numkey == ""
         self.active = False
-        self.c.write("status_arm", -1)
+        self.c.write("status_science", -1)
 
     def activate(self):
         self.active = True
-        self.c.write("status_arm", 1)
+        self.c.write("status_science", 1)
+
+    def capture_image(self):
+        resp = requests.get(self.add_capture)
+        with open('file' + str(self.img_no) + '.jpg', 'wb') as f:
+	        f.write(resp.content)
+        self.img_no += 1
 
     def on_press(self, key):
         print("finding",format(key))
         if(format(key) == "'a'"):
-            self.activate()
+            self.deactivate()
         elif(format(key) == "'p'"):
             self.deactivate()
-            self.numkey == ""
         elif(format(key) == "'s'"):
-            self.numkey == ""
-            self.deactivate()
+            self.activate()
         elif self.active == False:
-            print("Arm is inactive right now.")
-            print("If you want to activate the arm, then press the a key!")
+            print("Science module is inactive right now.")
+            print("If you want to activate the science module, then press the s key!")
             return
-        elif(format(key) in ["'1'","'2'","'3'","'4'","'5'","'6'"]):
+        elif(format(key) == "'c'"):
+            self.capture_image()
+            print("Image " + str(img_no) + " captured!")
+        elif(format(key) in ["'1'","'2'","'3'","'4'","'5'","'6'","'7'", "'8'"]):
             self.numkey = key  
         elif(format(key) == 'Key.up'):
             if self.numkey == "":
@@ -119,7 +132,7 @@ class RoboticArm:
             else:
                 self.back(self.numkey)
         elif(format(key) == 'Key.enter'):
-            print("Deleting arm")
+            print("Deleting science module")
             self.done = True
 
     def on_release(self, key):
@@ -137,6 +150,6 @@ if __name__ == "__main__":
         except requests.exceptions.ReadTimeout: 
             pass
 
-    arm = RoboticArm(args["server"])
-    arm.run()
-    del arm
+    sc_module = Science(args["server"])
+    sc_module.run()
+    del sc_module
