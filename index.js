@@ -6,7 +6,7 @@ var shell = os.platform() === "win32" ? "powershell.exe" : "bash";
 
 var width = 1440;
 var height = 824;
-var width_sidebar = 254;
+var width_sidebar = 250;
 var height_prop_terminal = 224;
 var width_video = 700
 
