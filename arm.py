@@ -87,6 +87,7 @@ class RoboticArm:
     def deactivate(self):
         self.active = False
         self.c.write("status_arm", -1)
+        self.numkey = ""
 
     def activate(self):
         self.active = True
@@ -98,9 +99,7 @@ class RoboticArm:
             self.activate()
         elif(format(key) == "'p'"):
             self.deactivate()
-            self.numkey == ""
         elif(format(key) == "'s'"):
-            self.numkey == ""
             self.deactivate()
         elif self.active == False:
             print("Arm is inactive right now.")
