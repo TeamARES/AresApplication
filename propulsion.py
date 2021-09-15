@@ -6,10 +6,11 @@ import argparse
 from socketengine import client
 import requests
 
-server = 'http://192.168.29.139:8001/propulsion'
+Server = 'http://192.168.29.139:8000/propulsion'
 
 class Motor_Controls:
     def __init__(self, is_server_running):
+        self.done = False
         self.is_server_running = is_server_running
         self.motorspeed1 = 0
         self.motorspeed2 = 0
@@ -18,7 +19,7 @@ class Motor_Controls:
         self.dec_stepsize = 5
         self.forwardBackwardSpeed = 0
         self.leftRightSpeed = 0
-        self.c = client(addr = "127.0.0.1", port = 8000)
+        self.c = client(addr = "127.0.0.1", port = 8002)
         self.c.start()
         if self.is_server_running == True:
             self.host = '192.168.29.139'
@@ -39,7 +40,7 @@ class Motor_Controls:
     
     def sendDataToNode(self):
         count_now = time.perf_counter()
-        if count_now - self.Node_counter >= 0.2:
+        if count_now - self.Node_counter >= 0.5:
             self.motorspeed1 = self.forwardBackwardSpeed
             self.motorspeed2 = self.forwardBackwardSpeed
             self.motorspeed1 -= self.leftRightSpeed
@@ -111,6 +112,18 @@ class Motor_Controls:
     def activate(self):
         self.active = True
         self.c.write("status_prop", 1)
+    def Stop(self):
+        print("Exit initiated")
+        self.deactivate()
+        self.stopMotor()
+        self.s.send(str.encode("stop"))
+        # After sending we check if it was recieved or not
+        checkDataTranfer = self.s.recv(1024)
+        print(checkDataTranfer)
+        self.c.close()
+        self.done = True
+        self.decelerate_thread.join()
+        self.s.close()
 
     def on_press(self, key):
         self.deaclereration_counter = time.perf_counter()
@@ -139,17 +152,20 @@ class Motor_Controls:
         elif(format(key) == 'Key.space'):
             print('stopingMotor')
             self.stopMotor()
+        elif(format(key) == "'q'"):
+            self.Stop()
 
     def on_release(self, key):
         if key == 'Key.esc':    
             return False
 
     def decelerate(self):
-        while True:
+        while self.done == False:
             if self.active == False:
+                self.deaclereration_counter = time.perf_counter()
                 continue
             stop_deaclereration_counter = time.perf_counter()
-            if stop_deaclereration_counter - self.deaclereration_counter >= 0.1:
+            if stop_deaclereration_counter - self.deaclereration_counter >= 0.2:
                 if self.forwardBackwardSpeed >= self.dec_stepsize:
                     self.forwardBackwardSpeed -= self.dec_stepsize
                 elif self.forwardBackwardSpeed <= -self.dec_stepsize:
@@ -171,7 +187,7 @@ if __name__ == "__main__":
     args = vars(ap.parse_args())
     if args["server"] == True:
         try:
-            requests.get(server, timeout = 0.1)
+            requests.get(Server, timeout = 0.1)
         except requests.exceptions.ReadTimeout: 
             pass
 

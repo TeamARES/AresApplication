@@ -6,6 +6,8 @@ from socketengine import client
 import requests
 from flask import Flask, request, Response
 
+Server = 'http://192.168.29.139:8001/science'
+
 class Science:
     def __init__(self, is_server_running):
         self.speeds = dict()
@@ -18,8 +20,10 @@ class Science:
         self.speeds.update({7 : 1})
         self.speeds.update({8 : 1})
         self.numkey = ""
-        self.img_no = 0
-        self.add_capture = "http://192.168.29.13:8000/capture"
+        self.img_no_spectro = 0
+        self.img_no_micro = 0
+        self.add_capture_spectro = "http://192.168.29.3:8000/capture_spectro"
+        self.add_capture_micro = "http://192.168.29.3:8000/capture_micro"
         self.active = False
         self.c = client(addr = "127.0.0.1", port = 8002)
         self.c.start()
@@ -59,7 +63,7 @@ class Science:
     def forward(self, num):
         motornumber = int(format(num)[1])
         print(motornumber)
-        data = str(1) + ','
+        data = str(2) + ','
         for i in range(1,9):
             if i == motornumber:
                 data = data + str(self.speeds[motornumber]) + ','
@@ -98,11 +102,19 @@ class Science:
         self.active = True
         self.c.write("status_science", 1)
 
-    def capture_image(self):
-        resp = requests.get(self.add_capture)
-        with open('file' + str(self.img_no) + '.jpg', 'wb') as f:
+    def capture_spectro(self):
+        resp = requests.get(self.add_capture_spectro)
+        with open('spectrometer/file' + str(self.img_no_spectro) + '.jpg', 'wb') as f:
 	        f.write(resp.content)
-        self.img_no += 1
+        self.img_no_spectro += 1
+
+    def capture_micro(self):
+        img_no = 0
+        for i in range(20):
+            resp = requests.get(self.add_capture_micro)
+            with open('microscope/folder' + str(self.img_no_micro) + '/file' + str(i) + '.jpg', 'wb') as f:
+                f.write(resp.content)
+        self.img_no_micro += 1
 
     def on_press(self, key):
         print("finding",format(key))
@@ -117,8 +129,11 @@ class Science:
             print("If you want to activate the science module, then press the s key!")
             return
         elif(format(key) == "'c'"):
-            self.capture_image()
-            print("Image " + str(img_no) + " captured!")
+            self.capture_spectro()
+            print("Spectrometer Image " + str(self.img_no_spectro) + " captured!")
+        elif(format(key) == "'m'"):
+            self.capture_micro()
+            print("Microscope Image " + str(self.img_no_micro) + "captured!")
         elif(format(key) in ["'1'","'2'","'3'","'4'","'5'","'6'","'7'", "'8'"]):
             self.numkey = key  
         elif(format(key) == 'Key.up'):
@@ -146,7 +161,7 @@ if __name__ == "__main__":
     args = vars(ap.parse_args())
     if args["server"] == True:
         try:
-            requests.get(server, timeout = 0.1)
+            requests.get(Server, timeout = 0.1)
         except requests.exceptions.ReadTimeout: 
             pass
 

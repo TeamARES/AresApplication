@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" media="screen" href="./style.css" />
+</head>
+<body>
+    <div class = "container">
+        <div class = "box">
+            <h1 class = "V1"> Rover Ambient Lighting </h1>
+            <img src = "rover.png" class = "Image">
+            <h1 class = "V2"> Select a colour for the rover </h1>
+            <center>
+                <input type="color" id="col" name="col" value="#ff0000" class = "color-wheel"> <br>
+            </center>
+        </div>
+        <div class = "box">
+            <h1 class="V1"> Fan Control I </h1>
+            <img class = "Image" src = "fan.png">
+            <h1 class = "V2"> Turn the fan ON or OFF </h1>
+            <label class="switch" id = "fan1">
+                <input type="checkbox">
+                <span class="slider round"></span>
+            </label>
+        </div>
+        <div class = "box">
+            <h1 class="V1"> Fan Control II </h1>
+            <img class = "Image" src = "fan.png">
+            <h1 class = "V2"> Turn the fan ON or OFF </h1>
+            <label class="switch" id = "fan2">
+                <input type="checkbox">
+                <span class="slider round"></span>
+            </label>
+        </div>
+    </div>
+    <div class="container">    
+        <div class = "box">
+            <h1 class="V1"> Kill Switch </h1>
+            <img class = "im" src = "skull.png">
+            <h1 class = "V2"> Shut it down </h1>
+            <label class="switch" id = "kill">
+                <input type="checkbox">
+                <span class="slider round"></span>
+            </label>
+        </div>
+    </div>
+    <script src = "control.js"></script>
+</body>
+</html>

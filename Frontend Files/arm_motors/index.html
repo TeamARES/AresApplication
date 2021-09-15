@@ -10,6 +10,7 @@
     <body>
         <center>
             <h1 class = "VS"> Robotic Arm Motors </h1> 
+            <div class="animated-bar"></div><br>
             <div class = "containter">
                 <img class = "image" src = "arm.png">
                 <div class = "label1">
@@ -47,6 +48,16 @@
         <div class = "line4"></div>
         <div class = "line5"></div>
         <div class = "line6"></div>
+        <div class = "popup" onclick="myFunction()"> 
+            <img class = "I" src = "qmark.png">
+            <span class = "popuptext" id = "myPopup"> 
+              <div class="note-title">  Robotic Arm  </div>
+                <div class = "note"> &#8226 Press the "Enter" key on the terminal to start the script </div>
+                <div class = "note"> &#8226 Press the "a" key to activate the arm module </div>
+                <div class = "note"> &#8226 Select the motor you want to control (1-6) </div>
+                <div class = "note"> &#8226 Use the UP and DOWN keys to control the arm </div>
+            </span>
+          </div>
         <script src = 'comm_arm.js'></script>
     </body>
 </html>

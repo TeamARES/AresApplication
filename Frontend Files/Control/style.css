@@ -1,0 +1,141 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins" , sans-serif;
+}
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}  
+  .switch input { 
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  .switch input { 
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgb(0, 0, 0);
+    border: 2px solid #fff;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  input:checked + .slider {
+    background-color: #019E66;
+  }
+  
+  input:focus + .slider {
+    box-shadow: 0 0 1px #019E66;
+  }
+  
+  input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+  }
+  
+  /* Rounded sliders */
+  .slider.round {
+    border-radius: 34px;
+  }
+  
+  .slider.round:before {
+    border-radius: 50%;
+  }
+
+body {
+    background-color: rgba(22, 22, 22, 1);
+}
+.label1 {
+    font-size: 20px;
+    color: #fff;
+}
+
+.color-wheel {
+    width: 5em;
+    cursor: pointer;
+}
+
+.container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 5em;
+    margin-bottom: 10em;
+}
+
+.box {
+    border: 2px solid #019E66;
+    box-shadow: 5px 5px 5px 5px rgb(0, 0, 0);
+    padding: 1em;
+    border-radius: 8px;
+    align-items: center;
+    text-align: center;
+}
+
+.Image {
+    width: 10em;
+    margin-top: -1em;
+}
+.im {
+    width: 5em;
+    margin-top: -0.5em;
+}
+.V1 {
+    color: #fff;
+    font-size: 20px;
+    font-weight: 400;
+    margin-bottom: 1em;
+    text-align: center;
+    border: 2px solid #019E66;
+    box-shadow: 5px 5px 5px 5px rgb(0, 0, 0);
+    border-radius: 8px;
+    padding: 0.2em;
+    margin-top: -2em;
+    background-color: #019E66
+}
+
+.V2 {
+    color: #fff;
+    font-size: 16px;
+    font-weight: 400;
+    margin-bottom: 1em;
+    text-align: center;
+}
+
+.color-wheel{
+    border: 2px solid #fff;
+    background-color: rgba(22, 22, 22, 1);
+    border-radius: 8px;
+    width: 5em;
+    height: 2em;
+    margin-top: -5em;
+}

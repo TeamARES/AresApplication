@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" media="screen" href="./style.css" />
+    <script src="https://cdn.plot.ly/plotly-2.5.0.min.js"></script>
+</head>
+<body>
+    <div class = "container">
+        <div class = "box">
+            <h1 class = "V1"> Pressure Sensor </h1>
+            <img src = "pressure.png" class = "Image"> 
+            <h1 class = "V2" > Pressure reading (Pa): </h1>
+            <p class = "V3" id = "pressure"> 0 </p>
+            <div class = "graph" id = "pressure-graph"></div>
+        </div>
+        <div class = "box">
+            <h1 class = "V1"> Altitude Sensor </h1>
+            <img src = "altitude.png" class = "Image" style = "margin-top: 0em"> 
+            <h1 class = "V2" style = "margin-top: -5em"> Altitude reading (m): </h1>
+            <p class = "V3" id = "altitude"> 0 </p>
+            <div class = "graph" id = "altitude-graph"></div>
+        </div>
+        <div class = "box">
+            <h1 class = "V1"> Temperature-BMP Sensor </h1>
+            <img src = "temperature.png" class = "Image" style = "margin-left: -18em"> 
+            <h1 class = "V2" style = "margin-top: -5em"> Temperature-BMP reading (C): </h1>
+            <p class = "V3" id = "temperature-bmp"> 0 </p>
+            <div class = "graph" id = "temperature-bmp-graph"></div>
+        </div>
+    </div>
+    <div class = "container">
+        <div class = "box">
+            <h1 class = "V1"> Luminosity Sensor </h1>
+            <img src = "luminosity.png" class = "Image" style = "margin-left: -15.5em;"> 
+            <h1 class = "V2" > Luminosity reading (Lumins): </h1>
+            <p class = "V3" id = "luminosity"> 0 </p>
+            <div class = "graph" id = "luminosity-graph"></div>
+        </div>
+        <div class = "box">
+            <h1 class = "V1"> Humidity Sensor </h1>
+            <img src = "humidity.png" class = "Image" style = "margin-top: 0em"> 
+            <h1 class = "V2" style = "margin-top: -5em"> Humidity reading (%): </h1>
+            <p class = "V3" id = "humidity"> 0 </p>
+            <div class = "graph" id = "humidity-graph"></div>
+        </div>
+        <div class = "box">
+            <h1 class = "V1"> Temperature-DHT Sensor </h1>
+            <img src = "temperature.png" class = "Image" style = "margin-left: -18em"> 
+            <h1 class = "V2" style = "margin-top: -5em"> Temperature-DHT reading (C): </h1>
+            <p class = "V3" id = "temperature-dht"> 0 </p>
+            <div class = "graph" id = "temperature-dht-graph"></div>
+        </div>
+    </div>
+    <div class = "container">
+        <div class = "box">
+            <h1 class = "V1"> Methane Sensor </h1>
+            <img src = "methane.png" class = "Image" style = "margin-left: -15.5em;"> 
+            <h1 class = "V2" > Methane reading (PPM): </h1>
+            <p class = "V3" id = "methane"> 0 </p>
+            <div class = "graph" id = "methane-graph"></div>
+        </div>
+        <div class = "box">
+            <h1 class = "V1"> Ammonia Sensor </h1>
+            <img src = "ammonia.png" class = "Image" style = "margin-top: 0em"> 
+            <h1 class = "V2" style = "margin-top: -5em"> Ammonia reading (PPM): </h1>
+            <p class = "V3" id = "ammonia"> 0 </p>
+            <div class = "graph" id = "ammonia-graph"></div>
+        </div>
+        <div class = "box">
+            <h1 class = "V1"> Soil Moisture Sensor </h1>
+            <img src = "moisture.png" class = "Image" style = "margin-left: -18em"> 
+            <h1 class = "V2" style = "margin-top: -5em"> Soil Moisture reading (%): </h1>
+            <p class = "V3" id = "moisture"> 0 </p>
+            <div class = "graph" id = "moisture-graph"></div>
+        </div>
+    </div>
+    <div class = "container">
+        <div class = "box">
+            <h1 class = "V1"> Accelerometer </h1>
+            <img src = "acceleration.png" class = "Image" style = "margin-left: -18.5em; margin-top: 2em;"> 
+            <h1 class = "V2" style = "margin-top: -8em; margin-left: 10em" > Accelerometer readings (m/s<sup>2</sup>): </h1>
+            <h1 class = "V2" style = "margin-top: 6em; margin-left: 10em;" > Acceleration-z: <span class = "name" id = "acc_z"> 0 </span></h1>
+            <h1 class = "V2" style = "margin-left: 10em;"> Acceleration-y: <span class = "name" id = "acc_y"> 0 </span></h1>
+            <h1 class = "V2" style = "margin-left: 10em;"> Acceleration-x: <span class = "name" id = "acc_x"> 0 </span></h1>
+            <br><br><br>
+            <div class = "graph" id = "acc-graph"></div>
+        </div>
+        <div class = "box">
+            <h1 class = "V1"> Angular Velocity Sensor </h1>
+            <img src = "av.png" class = "Image" style = "margin-left: -18.5em; margin-top: 2em;"> 
+            <h1 class = "V2" style = "margin-top: -8em; margin-left: 10em" > Angular Velocity readings (rad/s): </h1>
+            <h1 class = "V2" style = "margin-top: 6em; margin-left: 10em;" > Angular Velocity z: <span class = "name" id = "av_z"> 0 </span></h1>
+            <h1 class = "V2" style = "margin-left: 10em;"> Angular Velocity y: <span class = "name" id = "av_y"> 0 </span></h1>
+            <h1 class = "V2" style = "margin-left: 10em;"> Angular Velocity x: <span class = "name" id = "av_x"> 0 </span></h1>
+            <br><br><br>
+            <div class = "graph" id = "av-graph"></div>
+        </div>
+    </div>
+    <div class = "container">
+        <div class = "box">
+            <h1 class = "V1"> Yaw Pitch Roll Sensor </h1>
+            <img src = "ypr.png" class = "Image" style = "margin-left: -18.5em; margin-top: 2em;"> 
+            <h1 class = "V2" style = "margin-top: -8em; margin-left: 10em" > Yaw Pitch Roll readings (rad): </h1>
+            <h1 class = "V2" style = "margin-top: 6em; margin-left: 10em;" > Yaw: <span class = "name" id = "yaw"> 0 </span></h1>
+            <h1 class = "V2" style = "margin-left: 10em;"> Pitch: <span class = "name" id = "pitch"> 0 </span></h1>
+            <h1 class = "V2" style = "margin-left: 10em;"> Roll: <span class = "name" id = "roll"> 0 </span></h1>
+            <br><br><br>
+            <div class = "graph" id = "ypr-graph"></div>
+        </div>
+    </div>
+    <script src = "script.js"></script>
+</body>
+</html>

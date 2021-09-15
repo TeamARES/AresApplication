@@ -1,6 +1,10 @@
 var Host = require('socket.engine').host; 
 var h = new Host(addr = "127.0.0.1", port = 8001);
 h.start();
+const popup = document.getElementById("myPopup");
+function myFunction() { 
+    popup.classList.toggle("show");
+}
 
 h.on("m1", (data) => {
     if (data == 0) 

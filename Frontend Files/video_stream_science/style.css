@@ -9,7 +9,6 @@ body{
     /* margin-top: 30px; */
     background-color: rgba(22, 22, 22, 1);
     font-family: "Poppins" , sans-serif;
-    
     /* height: 100 vh;
     width: 100 vw; */
 }
@@ -95,63 +94,63 @@ html{
 }
 
 .animated-bar {
-  background-color: #019E66;
-  content: '';
-  display: block;
-  height: 4px;
-  left: 0;
-  margin: 0 auto 0 auto;
-  position: relative;
-  right: 0;
-  width: 75px;
-  margin-bottom: -1em;
-}
-.animated-bar:before,
-.animated-bar:after {
-  -webkit-animation-duration: 3s;
-  -webkit-animation-iteration-count: infinite;
-  -webkit-animation-name: barAnimation;
-  -webkit-animation-timing-function: linear;
-  animation-duration: 3s;
-  animation-iteration-count: infinite;
-  animation-name: barAnimation;
-  animation-timing-function: linear;
-  background-color: #101010;
-  content: '';
-  height: 100%;
-  position: absolute;
-  top: 0;
-  width: 4px;
-}
-
-.animated-bar:before {
-  left: 8px;
-}
-
-.animated-bar:after {
-  left: 0;
-}
-
-@-webkit-keyframes barAnimation {
-  from {
-    -webkit-transform: translateX(0);
-    transform: translateX(0);
+    background-color: #019E66;
+    content: '';
+    display: block;
+    height: 4px;
+    left: 0;
+    margin: 0 auto 0 auto;
+    position: relative;
+    right: 0;
+    width: 75px;
+    margin-bottom: -1em;
   }
-
-  to {
-    -webkit-transform: translateX(75px);
-    transform: translateX(75px);
+  .animated-bar:before,
+  .animated-bar:after {
+    -webkit-animation-duration: 3s;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-name: barAnimation;
+    -webkit-animation-timing-function: linear;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+    animation-name: barAnimation;
+    animation-timing-function: linear;
+    background-color: #101010;
+    content: '';
+    height: 100%;
+    position: absolute;
+    top: 0;
+    width: 4px;
   }
-}
-
-@keyframes barAnimation {
-  from {
-    -webkit-transform: translateX(0);
-    transform: translateX(0);
+  
+  .animated-bar:before {
+    left: 8px;
   }
-
-  to {
-    -webkit-transform: translateX(75px);
-    transform: translateX(75px);
+  
+  .animated-bar:after {
+    left: 0;
   }
-}
+  
+  @-webkit-keyframes barAnimation {
+    from {
+      -webkit-transform: translateX(0);
+      transform: translateX(0);
+    }
+  
+    to {
+      -webkit-transform: translateX(75px);
+      transform: translateX(75px);
+    }
+  }
+  
+  @keyframes barAnimation {
+    from {
+      -webkit-transform: translateX(0);
+      transform: translateX(0);
+    }
+  
+    to {
+      -webkit-transform: translateX(75px);
+      transform: translateX(75px);
+    }
+  }

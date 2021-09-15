@@ -1,10 +1,11 @@
 var Host = require('socket.engine').host; 
-var h = new Host(addr = "127.0.0.1", port = 8000);
+var h = new Host(addr = "127.0.0.1", port = 8002);
 h.start();
 const gaugeElement1 = document.getElementById("gauge1")
 const gaugeElement2 = document.getElementById("gauge2");
 const gaugeElement3 = document.getElementById("gauge3");
 const gaugeElement4 = document.getElementById("gauge4");
+const popup = document.getElementById("myPopup");
 
 function setGaugeValue1(gauge, localValue, value) {
 
@@ -86,6 +87,10 @@ function setGaugeValue4(gauge, localValue, value) {
   gauge.querySelector(".gauge__cover").textContent = `${value}`;
 }
 
+function myFunction() { 
+  popup.classList.toggle("show");
+}
+
 h.on("speed-fl", (value) => {
     var original = value;
     value /= 100;
@@ -97,7 +102,7 @@ h.on("speed-fl", (value) => {
       setGaugeValue1(gaugeElement1, value, original);
     }
 });
-h.on("speed-bl", (value) => {
+h.on("speed-fr", (value) => {
     var original = value;
     value /= 100;
     if(value < 0 && value >= -1){
@@ -108,7 +113,7 @@ h.on("speed-bl", (value) => {
       setGaugeValue2(gaugeElement2, value, original);
     }
 });
-h.on("speed-fr", (value) => {
+h.on("speed-bl", (value) => {
     var original = value;
     value /= 100;
     if(value < 0 && value >= -1){
@@ -141,3 +146,4 @@ h.on("status_prop", (data) => {
       document.getElementById("status").style.color = "red"
   }
 });
+h.close();

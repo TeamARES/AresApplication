@@ -7,7 +7,7 @@ var shell = os.platform() === "win32" ? "powershell.exe" : "bash";
 var width = 1440;
 var height = 824;
 var width_sidebar = 250;
-var height_prop_terminal = 224;
+var height_terminal = 224;
 var width_video = 700
 
 let mainWindow;
@@ -17,6 +17,11 @@ let video_window;
 let sidebar;
 let arm_speed;
 let arm_terminal;
+let science_motors
+let science_terminal
+let video_window_science
+let control
+let sensor
 
 function createMainWindow(){
     mainWindow = new BrowserWindow({
@@ -59,7 +64,7 @@ function createSideBar(){
 
 function create_propulsion_speed_window(){
     propulsion_speed = new BrowserWindow({
-        height: height - height_prop_terminal, 
+        height: height - height_terminal, 
         width: (width - width_sidebar) - width_video, 
         show: false,
         frame: false,
@@ -78,12 +83,12 @@ function create_propulsion_speed_window(){
 }
 function create_Terminal_propulsion(){
     prop_terminal = new BrowserWindow({
-        height: height_prop_terminal, 
+        height: height_terminal, 
         width: (width - width_sidebar) - width_video, 
         show: false,
         frame: false,
         x: width_sidebar + width_video,
-        y: height - height_prop_terminal + 25,
+        y: height - height_terminal + 25,
         webPreferences: {
 			contextIsolation: false,
       		enableRemoteModule: true,
@@ -131,12 +136,12 @@ function createVideoWindow(){
 
 function create_Terminal_arm(){
     arm_terminal = new BrowserWindow({
-        height: height_prop_terminal, 
+        height: height_terminal, 
         width: (width - width_sidebar) - width_video, 
         show: false,
         frame: false,
         x: width_sidebar + width_video,
-        y: height - height_prop_terminal + 25,
+        y: height - height_terminal + 25,
         webPreferences: {
 			contextIsolation: false,
       		enableRemoteModule: true,
@@ -168,7 +173,7 @@ function create_Terminal_arm(){
 
 function create_arm_speed_window(){
     arm_speed = new BrowserWindow({
-        height: height - height_prop_terminal, 
+        height: height - height_terminal, 
         width: (width - width_sidebar) - width_video, 
         show: false,
         frame: false,
@@ -186,9 +191,124 @@ function create_arm_speed_window(){
     });
 }
 
+function create_science_motor_window(){
+    science_motors = new BrowserWindow({
+        height: height - height_terminal, 
+        width: (width - width_sidebar) - width_video, 
+        show: false,
+        frame: false,
+        x: width_sidebar + width_video,
+        y: 0,
+        webPreferences: {
+			contextIsolation: false,
+      		enableRemoteModule: true,
+            nodeIntegration: true
+        }
+    });
+    science_motors.loadURL(`file://${__dirname}/Frontend\ Files/science_motors/index.html`);
+    science_motors.on("closed", function() {
+        science_motors = null;
+    });
+}
+
+function create_Terminal_science(){
+    science_terminal = new BrowserWindow({
+        height: height_terminal, 
+        width: (width - width_sidebar) - width_video, 
+        show: false,
+        frame: false,
+        x: width_sidebar + width_video,
+        y: height - height_terminal + 25,
+        webPreferences: {
+			contextIsolation: false,
+      		enableRemoteModule: true,
+            nodeIntegration: true
+        }
+    });
+    
+    science_terminal.loadURL(`file://${__dirname}/science_terminal.html`);
+    science_terminal.on("closed", function() {
+        science_terminal = null;
+    });
+
+    var ptyProcess = pty.spawn(shell, [], {
+        name: "xterm-color",
+        cols: 80,
+        rows: 30,
+        cwd: process.env.HOME,
+        env: process.env
+    });
+
+    ptyProcess.on('data', function(data) {
+        science_terminal.webContents.send("terminal.incomingData", data);
+    });
+    ptyProcess.write("python3 /Users/harshgupta/Desktop/Ares/Application/science.py");
+    ipcMain.on("terminal.keystroke", (event, key) => {
+        ptyProcess.write(key);
+    });
+}
+
+function createVideoWindow_science(){
+	video_window_science = new BrowserWindow({
+		height: height, 
+		width: width_video, 
+        frame: false,
+        x: width_sidebar,
+        y: 0,
+        show: false,
+		webPreferences: {
+			nodeIntegration: true
+		}
+	});
+	video_window_science.loadURL(`file://${__dirname}/Frontend\ Files/video_stream_science/index.html`);
+	video_window_science.on("closed", function() {
+		video_window_science = null;
+	});
+}
+
+function create_control_window(){
+	control = new BrowserWindow({
+		height: height, 
+        width: width - width_sidebar, 
+        frame: false,
+        x: width_sidebar, 
+        y: 0,
+        show: false,
+		webPreferences: {
+            contextIsolation: false,
+      		enableRemoteModule: true,
+			nodeIntegration: true
+		}
+	});
+	control.loadURL(`file://${__dirname}/Frontend\ Files/Control/index.html`);
+	control.on("closed", function() {
+		control = null;
+	});
+};
+
+function create_sensor_window(){
+    sensor = new BrowserWindow({
+        height: height, 
+        width: width - width_sidebar, 
+        frame: false,
+        x: width_sidebar, 
+        y: 0,
+        webPreferences: {
+			contextIsolation: false,
+      		enableRemoteModule: true,
+            nodeIntegration: true
+        }
+    });
+    sensor.loadURL(`file://${__dirname}/Frontend\ Files/Sensors/index.html`);
+    sensor.on("closed", function() {
+        sensor = null;
+    });
+}
+
 app.on("ready", function() {
     createMainWindow();
     createSideBar();
+    sidebar.setAlwaysOnTop(true);
     ipcMain.on('open-propulsion', function(){
 
         if (propulsion_speed == null) 
@@ -228,5 +348,34 @@ app.on("ready", function() {
         if (video_window == null)
             createVideoWindow()
         video_window.show();
+    });
+
+    ipcMain.on('open-science', function(){
+
+        if (science_motors == null) 
+            create_science_motor_window();
+        science_motors.show();
+
+        if (science_terminal == null)
+            create_Terminal_science();
+        science_terminal.show();
+        
+        if (video_window_science == null)
+            createVideoWindow_science()
+        video_window_science.show();
+    });
+
+    ipcMain.on('open-control', function(){
+
+        if (control == null)
+            create_control_window()
+        control.show();
+    });
+
+    ipcMain.on('open-sensor', function(){
+
+        if (sensor == null)
+            create_sensor_window()
+        sensor.show();
     });
 });

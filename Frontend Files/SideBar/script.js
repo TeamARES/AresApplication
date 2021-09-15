@@ -1,46 +1,70 @@
 const ipc = require('electron').ipcRenderer
 let sidebar = document.querySelector(".sidebar");
 let closeBtn = document.querySelector("#btn");
-let prop_button1 = document.querySelector('#button_prop1')
-let prop_button2 = document.querySelector('#button_prop2')
-let prop_button3 = document.querySelector('#button_prop3')
-let home_button1 = document.querySelector('#home_button1')
-let home_button2 = document.querySelector('#home_button2')
-let arm_button1 = document.querySelector('#arm_button1')
-let arm_button2 = document.querySelector('#arm_button2')
-let arm_button3 = document.querySelector('#arm_button3')
+let home_button = document.querySelector('#home_button')
+let prop_button = document.querySelector('#button_prop')
+let arm_button = document.querySelector('#arm_button')
+let science_button = document.querySelector('#science_button')
+let sensor_button = document.querySelector('#sensor_button')
+let control_button = document.querySelector('#control_button')
 
-
-prop_button1.addEventListener('click', function() {
-    ipc.send('open-propulsion')
-});
-
-prop_button2.addEventListener('click', function() {
-  ipc.send('open-propulsion')
-});
-
-prop_button3.addEventListener('click', function() {
-  ipc.send('open-propulsion')
-});
-
-home_button1.addEventListener('click', function() {
+home_button.addEventListener('click', function() {
   ipc.send('return_main')
+  home_button.style.background = "#019E66"
+  prop_button.style.background = "rgba(22, 22, 22, 1)"
+  arm_button.style.background = "rgba(22, 22, 22, 1)"
+  science_button.style.background = "rgba(22, 22, 22, 1)"
+  control_button.style.background = "rgba(22, 22, 22, 1)"
+  sensor_button.style.background = "rgba(22, 22, 22, 1)"
 });
 
-home_button2.addEventListener('click', function() {
-  ipc.send('return_main')
+prop_button.addEventListener('click', function() {
+  ipc.send('open-propulsion')
+  prop_button.style.background = "#019E66"
+  home_button.style.background = "rgba(22, 22, 22, 1)"
+  arm_button.style.background = "rgba(22, 22, 22, 1)"
+  science_button.style.background = "rgba(22, 22, 22, 1)"
+  control_button.style.background = "rgba(22, 22, 22, 1)"
+  sensor_button.style.background = "rgba(22, 22, 22, 1)"
 });
 
-arm_button1.addEventListener('click', function() {
+arm_button.addEventListener('click', function() {
   ipc.send('open-arm')
+  arm_button.style.background = "#019E66"
+  prop_button.style.background = "rgba(22, 22, 22, 1)"
+  home_button.style.background = "rgba(22, 22, 22, 1)"
+  science_button.style.background = "rgba(22, 22, 22, 1)"
+  control_button.style.background = "rgba(22, 22, 22, 1)"
+  sensor_button.style.background = "rgba(22, 22, 22, 1)"
 });
 
-arm_button2.addEventListener('click', function() {
-  ipc.send('open-arm')
+science_button.addEventListener('click', function() {
+  ipc.send('open-science')
+  science_button.style.background = "#019E66"
+  prop_button.style.background = "rgba(22, 22, 22, 1)"
+  home_button.style.background = "rgba(22, 22, 22, 1)"
+  arm_button.style.background = "rgba(22, 22, 22, 1)"
+  control_button.style.background = "rgba(22, 22, 22, 1)"
+  sensor_button.style.background = "rgba(22, 22, 22, 1)"
 });
 
-arm_button3.addEventListener('click', function() {
-  ipc.send('open-arm')
+sensor_button.addEventListener('click', function() {
+  ipc.send('open-sensor')
+  sensor_button.style.background = "#019E66"
+  prop_button.style.background = "rgba(22, 22, 22, 1)"
+  home_button.style.background = "rgba(22, 22, 22, 1)"
+  arm_button.style.background = "rgba(22, 22, 22, 1)"
+  control_button.style.background = "rgba(22, 22, 22, 1)"
+  science_button.style.background = "rgba(22, 22, 22, 1)"
+});
+control_button.addEventListener('click', function() {
+  ipc.send('open-control')
+  control_button.style.background = "#019E66"
+  prop_button.style.background = "rgba(22, 22, 22, 1)"
+  home_button.style.background = "rgba(22, 22, 22, 1)"
+  arm_button.style.background = "rgba(22, 22, 22, 1)"
+  sensor_button.style.background = "rgba(22, 22, 22, 1)"
+  science_button.style.background = "rgba(22, 22, 22, 1)"
 });
 
 closeBtn.addEventListener("click", ()=>{

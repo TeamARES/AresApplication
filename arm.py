@@ -5,6 +5,7 @@ import requests
 from socketengine import client
 import requests
 
+Server = 'http://192.168.29.139:8000/robotic_arm'
 class RoboticArm:
     def __init__(self, is_server_running):
         self.speeds = dict()
@@ -93,6 +94,18 @@ class RoboticArm:
         self.active = True
         self.c.write("status_arm", 1)
 
+    def Stop(self):
+        print("Exit initiated")
+        self.deactivate()
+        self.stopall()
+        self.s.send(str.encode("stop"))
+        # After sending we check if it was recieved or not
+        checkDataTranfer = self.s.recv(1024)
+        print(checkDataTranfer)
+        self.done = True
+        self.c.close()
+        self.s.close()
+
     def on_press(self, key):
         print("finding",format(key))
         if(format(key) == "'a'"):
@@ -117,9 +130,8 @@ class RoboticArm:
                 print("Please select a motor")
             else:
                 self.back(self.numkey)
-        elif(format(key) == 'Key.enter'):
-            print("Deleting arm")
-            self.done = True
+        elif(format(key) == "'q'"):
+            self.Stop()
 
     def on_release(self, key):
         self.stopall()
@@ -132,7 +144,7 @@ if __name__ == "__main__":
     args = vars(ap.parse_args())
     if args["server"] == True:
         try:
-            requests.get(server, timeout = 0.1)
+            requests.get(Server, timeout = 0.1)
         except requests.exceptions.ReadTimeout: 
             pass
 
