@@ -15,6 +15,7 @@ class RoboticArm:
         self.speeds.update({4 : 1})
         self.speeds.update({5 : 1})
         self.speeds.update({6 : 1})
+        self.motor_active = -1
         self.numkey = ""
         self.active = False
         self.c = client(addr = "127.0.0.1", port = 8001)
@@ -123,18 +124,21 @@ class RoboticArm:
         elif(format(key) == 'Key.up'):
             if self.numkey == "":
                 print("Please select a motor")
-            else:
+            elif self.motor_active == -1:
                 self.forward(self.numkey)
+                self.motor_active = 1
         elif(format(key) == 'Key.down'):
             if self.numkey == "":
                 print("Please select a motor")
-            else:
+            elif self.motor_active == -1:
                 self.back(self.numkey)
+                self.motor_active = 1
         elif(format(key) == "'q'"):
             self.Stop()
 
     def on_release(self, key):
         self.stopall()
+        self.motor_active = -1
         if key == keyboard.Key.esc:      # Stop listener
             return False
 
