@@ -82,11 +82,14 @@
   box-sizing: border-box;
   font-family: "Poppins" , sans-serif;
 }
+body {
+  background-color: #101010;
+}
 .sidebar{
   position: fixed;
   left: 0;
   top: 0;
-  height: 100%;
+  height: 60%;
   width: 250px;
   background: #101010;
   padding: 6px 14px;
@@ -101,6 +104,7 @@
 }
 
 .logo{
+  margin-left: 1em;
   height: 30px;
   
 }
@@ -128,13 +132,14 @@
   cursor: pointer;
   transition: all 0.5s ease;
 }
-.sidebar i{
+.i{
+  width: 2em;
   color: #fff;
-  height: 60px;
-  min-width: 50px;
+  height: 50px;
   font-size: 28px;
   text-align: center;
   line-height: 60px;
+  padding: 7px;
 }
 .sidebar .nav-list{
   margin-top: 20px;
@@ -204,4 +209,8 @@
   .sidebar li .tooltip{
     display: none;
   }
+}
+.img {
+  width: 100%;
+  margin-top: 2em;
 }

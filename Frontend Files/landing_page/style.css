@@ -1,4 +1,5 @@
 /* poppins-200 - latin */
+@import url('http://fonts.cdnfonts.com/css/harry-potter');
 @font-face {
   font-family: 'Poppins';
   font-style: normal;
@@ -95,9 +96,19 @@ h1{
   color:white;
   font-size: 4em;
   text-align: center;
-  text-shadow: 1px 1px 1px #019E66;
   font-family: "Poppins" , sans-serif;
   font-weight: 300;
+}
+p {
+  font-family: "Times New Roman", Times, serif;
+  text-shadow: 2px 4px 3px #019E66,
+                 0px -5px 35px rgba(255,255,255,0.3);
+  font-weight: 400;
+  font-size: 50px;
+  color: #fff;
+  font-style: italic;
+  text-align: center;
+
 }
 .P {
   z-index: 50;
@@ -106,79 +117,9 @@ h1{
   margin-right: 2em;
   margin-bottom: 1.2em;
   font-size: 21px;
-  margin-top: 2em;
+  margin-top: 1.5em;
 }
-.shimmer {
-  margin-top: 1em;
-  font-weight: 400;
-  text-align: center;
-  font-size: 50px;
-  background: linear-gradient(90deg, #000, #fff, #000);
-  letter-spacing: 5px;
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-repeat: no-repeat;
-  background-size: 80%;
-  animation: shine 5s linear infinite;
-  position: relative;
-  font-family: "Poppins" , sans-serif;
-  text-align: center;
-  color: rgba(255,255,255,0.1);
-  background: -webkit-gradient(linear, left top, right top, from(#019E66), to(#019E66), color-stop(0.5, #019E66));
-  background: -moz-gradient(linear, left top, right top, from(#019E66), to(#019E66), color-stop(0.5, #019E66));
-  background: gradient(linear, left top, right top, from(#019E66), to(#019E66), color-stop(0.5, #019E66));
-  -webkit-background-size: 125px 100%;
-  -moz-background-size: 125px 100%;
-  background-size: 125px 100%;
-  -webkit-background-clip: text;
-  -moz-background-clip: text;
-  background-clip: text;
-  -webkit-animation-name: shimmer;
-  -moz-animation-name: shimmer;
-  animation-name: shimmer;
-  -webkit-animation-duration: 2s;
-  -moz-animation-duration: 2s;
-  animation-duration: 2s;
-  -webkit-animation-iteration-count: infinite;
-  -moz-animation-iteration-count: infinite;
-  animation-iteration-count: infinite;
-  background-repeat: no-repeat;
-  background-position: 0 0;
-  background-color: rgb(255, 255, 255);
-}
-@-moz-keyframes shimmer {
-  0% {
-    background-position: top left;
-  }
-  100% {
-    background-position: top right;
-  }
-}
-@-webkit-keyframes shimmer {
-  0% {
-    background-position: top left;
-  }
-  100% {
-    background-position: top right;
-  }
-}
-@-o-keyframes shimmer {
-  0% {
-    background-position: top left;
-  }
-  100% {
-    background-position: top right;
-  }
-}
-@keyframes shimmer {
-  0% {
-    background-position: top left;
-  }
-  100% {
-    background-position: top right;
-  }
-}
+
 .count-particles {
   background: #000022;
   width: 80px;
@@ -275,4 +216,14 @@ body {
     -webkit-transform: translateX(75px);
     transform: translateX(75px);
   }
+}
+.img {
+  width: 15em;
+  margin-left : 75em;
+  margin-top: -10em;
+}
+ul {
+  list-style-image:url("rover.jpg");
+  list-style-type:square;
+  margin-left: 30em;
 }

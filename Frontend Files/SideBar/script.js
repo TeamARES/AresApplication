@@ -1,6 +1,4 @@
 const ipc = require('electron').ipcRenderer
-let sidebar = document.querySelector(".sidebar");
-let closeBtn = document.querySelector("#btn");
 let home_button = document.querySelector('#home_button')
 let prop_button = document.querySelector('#button_prop')
 let arm_button = document.querySelector('#arm_button')
@@ -65,9 +63,4 @@ control_button.addEventListener('click', function() {
   arm_button.style.background = "rgba(22, 22, 22, 1)"
   sensor_button.style.background = "rgba(22, 22, 22, 1)"
   science_button.style.background = "rgba(22, 22, 22, 1)"
-});
-
-closeBtn.addEventListener("click", ()=>{
-  sidebar.classList.toggle("open");
-  menuBtnChange();//calling the function(optional)
 });

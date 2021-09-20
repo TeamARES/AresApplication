@@ -116,6 +116,11 @@ body{
     font-size: 15px;
     font-weight: 400;
     white-space: nowrap;
+    border: 2px solid #019E66;
+    width: 6.5em;
+    border-radius: 6px;
+    background-color: #019E66;
+    box-shadow: 3px 3px 3px 3px rgb(0, 0, 0);
 }
 
 .container {
@@ -196,11 +201,11 @@ span.name {
         translateY(-20px)
         translateX(5px)
         rotate(60deg); 
-    /* top: -20px; */
+    transform: translateY(-20px) translateX(5px) rotate(60deg);;
 }
 
 .line2 {
-    width: 50px;
+    width: 48px;
     height: 40px;
     border-bottom: 2px solid #fff;
     margin-top: -6em;
@@ -209,12 +214,12 @@ span.name {
         translateY(-20px)
         translateX(5px)
         rotate(90deg); 
-    /* top: -20px; */
+    transform: translateY(-20px) translateX(5px) rotate(90deg); 
 }
 
 .line3 {
-    width: 30px;
-    height: 40px;
+    width: 38px;
+    height: 52px;
     border-bottom: 2px solid #fff;
     margin-top: 5.5em;
     margin-left: 10.4em;
@@ -222,25 +227,25 @@ span.name {
         translateY(-20px)
         translateX(5px)
         rotate(105deg); 
-    /* top: -20px; */
+    transform: translateY(-20px) translateX(5px) rotate(105deg); 
 }
 
 .line4 {
     width: 60px;
     height: 40px;
     border-bottom: 2px solid #fff;
-    margin-top: 4.9em;
+    margin-top: 4.5em;
     margin-left: 16.5em;
     -webkit-transform:
         translateY(-20px)
         translateX(5px)
         rotate(120deg); 
-    /* top: -20px; */
+    transform: translateY(-20px) translateX(5px) rotate(120deg); 
 }
 
 .line5 {
-    width: 30px;
-    height: 40px;
+    width: 40px;
+    height: 44px;
     border-bottom: 2px solid #fff;
     margin-top: -13.5em;
     margin-left: 16.3em;
@@ -248,11 +253,11 @@ span.name {
         translateY(-20px)
         translateX(5px)
         rotate(120deg); 
-    /* top: -20px; */
+    transform: translateY(-20px) translateX(5px) rotate(120deg); 
 }
 
 .line6 {
-    width: 30px;
+    width: 26px;
     height: 40px;
     border-bottom: 2px solid #fff;
     margin-top: -4em;
@@ -261,7 +266,7 @@ span.name {
         translateY(-20px)
         translateX(5px)
         rotate(140deg); 
-    /* top: -20px; */
+    transform: translateY(-20px) translateX(5px) rotate(140deg);
 }
 
 .popup {
@@ -353,7 +358,7 @@ span.name {
   .I {
     background-color: rgba(22, 22, 22, 1);
     width: 3em;
-    margin-top: 13em;
+    margin-top: 12.5em;
     margin-right: -3em;
   }
 
