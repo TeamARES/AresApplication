@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="axios.min.js"></script>
+    <script src="download.js"></script>
+    <link rel="stylesheet" media="screen" href="./style.css" />
+  </head>
+  <body>
+    <div class="container">
+        <div class = "box">
+            <h1 class = "V1"> Actuator </h1>
+            <img class = "icon" src = "actuator.png" style = "width: 3.5em;">
+            <div class = "arrow" style = "margin-left: 5em; margin-top: 0.2em;"></div>
+            <div class = "arrow" style = "transform: rotate(225deg); margin-top: -0.45em; margin-left: 1.2em;"></div>
+        </div>
+        <div class = "box">
+            <h1 class = "V1"> Microscope </h1>
+            <img class = "icon" src = "microscope.png" style = "margin-bottom: 0em";>
+            <button class = "btn" id="microscope"> Capture Photo </button>
+        </div>
+    </div>
+    <div class = "container">
+        <div class = "box">
+            <h1 class = "V1"> Drill Machine </h1>
+            <img class = "icon" src = "drill.png" style = "width: 3.8em; margin-top: 0.4em;">
+            <div class = "arrow" style = "margin-left: 5em; margin-top: 0.4em;"></div>
+            <div class = "arrow" style = "transform: rotate(225deg); margin-top: -0.5em; margin-left: 1.2em"></div>
+        </div>
+        <div class = "box" style = "margin-top: 2.5em;">
+            <h1 class = "V1"> Sensors </h1>
+            <img class = "icon" src = "sensor.png" style = "width: 4em;">
+            <div class = "arrow" style = "margin-left: 5em; margin-top: 0.5em;"></div>
+            <div class = "arrow" style = "transform: rotate(225deg); margin-top: -0.4em; margin-left: 1.2em; margin-bottom: -0.4em;"></div>
+        </div>
+    </div>
+    <div class = "container">
+        <div class = "box">
+            <h1 class = "V1"> Vacuum </h1>
+            <img class = "icon" src = "vacuum.png" style = "width: 4em; margin-bottom: 0em">
+            <button class = "btn" id="vacuum"> Vacuum ON </button>
+        </div>
+        <div class = "box">
+            <h1 class = "V1"> Blender </h1>
+            <img src = "blender.png" class = "icon" style = "width: 3.7em; margin-bottom: 0em">
+            <button class = "btn" id="blender"> Blender Mix </button>
+        </div>
+    </div>
+    <div class = "container">
+        <div class = "box">
+            <h1 class = "V1"> Valve </h1>
+            <img class = "icon" src = "valve.png" class = "icon" style = "width: 4em">
+            <button class = "btn" id="valve"> Valve open </button>
+        </div>   
+        <div class = "box" style = "width : 12em;">
+            <h1 class = "V1"> Pumps </h1>
+            <img src = "pump.png" class = "icon" style = "width: 3em; margin-left: -7em; margin-bottom: -3em;">
+            <form id = "pump">
+                <input class = "btn" type="submit" value="Activate" style = "padding: 4px; font-size: 12px; margin-left: 4em;">
+                <select required id="pumps" name="pumps" style = "margin-left: -0.5em; margin-top: 1em;">
+                    <option value="" disabled selected hidden> Select a pump </option>
+                    <option value="1"> 1. Lysis </option>
+                    <option value="2"> 2. Water </option>
+                    <option value="3"> 3. Cleaning Solution </option>
+                    <option value="4"> 4. Filter I </option>
+                    <option value="5"> 5. Filter II </option>
+                    <option value="6"> 6. Filter III </option>
+                    <option value="7"> 7. Filter IV </option>
+                    <option value="8"> 8. Sudan IV Dye </option>
+                    <option value="9"> 9. Schiff's Reagent </option>
+                    <option value="10"> 10. Alpha Naphanol </option>
+                    <option value="11"> 11. Sodium Hypochlorite </option>
+                </select>
+            </form>
+        </div>
+    </div>
+    <div class = "container">
+        <div class = "box" style = "width: 90%; margin-bottom: 1em;">
+            <h1 class = "V1"> Stepper Motor </h1>
+            <center>
+                <table>
+                    <caption>Nozzle Information</caption>
+                    <thead>
+                        <tr>
+                            <th> Nozzle Number </th>
+                            <th> Substance </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>I</td>
+                            <td> Lysis Solution </td>
+                        </tr>
+                        <tr>
+                            <td>II</td>
+                            <td> Water </td>
+                        </tr>
+                        <tr>
+                            <td>III</td>
+                            <td> Cleaning Solution </td>
+                        </tr>
+                        <tr>
+                            <td>IV</td>
+                            <td> Filter I </td>
+                        </tr>
+                        <tr>
+                            <td>V</td>
+                            <td> Filter II </td>
+                        </tr>
+                        <tr>
+                            <td>VI</td>
+                            <td> Filter III </td>
+                        </tr>
+                        <tr>
+                            <td>VII</td>
+                            <td> Filter IV </td>
+                        </tr>
+                        <tr>
+                            <td>VIII</td>
+                            <td> Sudan IV Dye </td>
+                        </tr>
+                        <tr>
+                            <td>IX</td>
+                            <td> Schiff's Reagent </td>
+                        </tr>
+                        <tr>
+                            <td>X</td>
+                            <td> Alpha Naphanol </td>
+                        </tr>
+                        <tr>
+                            <td>XI</td>
+                            <td> Sodium Hypochlorite </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </center>
+            <p>
+                <h1 class = "V2" style = "margin-top: 2em;"> Move a test tube under a nozzle </h1>
+                <img src = "motor.png" class = "icon" style = "width: 4em; margin-bottom: -1em;">
+                <button class = "btn" id="stepper-shake" style = "margin-left: 3em; margin-top: -1em;"> Activate Mixing Cycle </button>
+            </p>
+            <p>
+                <h1 class = "V2"> Move a test tube under a nozzle </h1>
+                <form id = "stepper_nozzle">
+                    <select required id="test_tube_nozzle" name="test_tube_nozzle">
+                        <option value="" disabled selected hidden> Select a test tube </option>
+                        <option value="1"> 1 </option>
+                        <option value="2"> 2 </option>
+                        <option value="3"> 3</option>
+                        <option value="4"> 4</option>
+                        <option value="5"> 5</option>
+                        <option value="6"> 6</option>
+                        <option value="7"> 7</option>
+                        <option value="8"> 8</option>
+                        <option value="9"> 9</option>
+                        <option value="10"> 10</option>
+                        <option value="11"> 11</option>
+                        <option value="12"> 12</option>
+                        <option value="13"> 13</option>
+                        <option value="14"> 14</option>
+                        <option value="15"> 15</option>
+                        <option value="16"> 16</option>
+                        <option value="17"> 17</option>
+                        <option value="18"> 18</option>
+                        <option value="19"> 19</option>
+                        <option value="20"> 20</option>
+                        <option value="21"> 21</option>
+                        <option value="22"> 22</option>
+                        <option value="23"> 23</option>
+                        <option value="24"> 24</option>
+                    </select>
+                    <select required id="nozzle_no" name="nozzle_no" style = "margin-left: 2em;">
+                        <option value="" disabled selected hidden> Select a nozzle </option>
+                        <option value="1"> I </option>
+                        <option value="2"> II </option>
+                        <option value="3"> III </option>
+                        <option value="4"> IV </option>
+                        <option value="5"> V </option>
+                        <option value="6"> VI </option>
+                        <option value="7"> VII </option>
+                        <option value="8"> VIII </option>
+                        <option value="9"> IX </option>
+                        <option value="10"> X </option>
+                        <option value="11"> XI </option>
+                    </select>
+                    <input class = "btn" type="submit" value="Move" style = "padding: 4px; font-size: 12px; margin-left: 2em;">
+                </form>
+            </p>
+            <p>
+                <h1 class = "V2"> Move a test tube to the colour sensor </h1>
+                <form id = "stepper_colour">
+                    <select required id="test_tube_colour" name="test_tube_colour">
+                        <option value="" disabled selected hidden> Select a test tube </option>
+                        <option value="1"> 1 </option>
+                        <option value="2"> 2 </option>
+                        <option value="3"> 3</option>
+                        <option value="4"> 4</option>
+                        <option value="5"> 5</option>
+                        <option value="6"> 6</option>
+                        <option value="7"> 7</option>
+                        <option value="8"> 8</option>
+                        <option value="9"> 9</option>
+                        <option value="10"> 10</option>
+                        <option value="11"> 11</option>
+                        <option value="12"> 12</option>
+                        <option value="13"> 13</option>
+                        <option value="14"> 14</option>
+                        <option value="15"> 15</option>
+                        <option value="16"> 16</option>
+                        <option value="17"> 17</option>
+                        <option value="18"> 18</option>
+                        <option value="19"> 19</option>
+                        <option value="20"> 20</option>
+                        <option value="21"> 21</option>
+                        <option value="22"> 22</option>
+                        <option value="23"> 23</option>
+                        <option value="24"> 24</option>
+                    </select>
+                    <input class = "btn" type="submit" value="Move" style = "padding: 4px; font-size: 12px; margin-left: 2em;">
+            </p>
+        </div>
+    </div>
+    <script src = "script.js"></script>
+  </body>
+</html>

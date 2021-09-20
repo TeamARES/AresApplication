@@ -286,7 +286,7 @@ span.name {
     align-items: center;
     visibility: hidden;
     width: 31em;
-    background-color: #101010;
+    background-color: rgba(22, 22, 22, 1);
     color: #fff;
     text-align: left;
     border: 1px solid #019E66;
@@ -352,9 +352,9 @@ span.name {
   
   .I {
     background-color: rgba(22, 22, 22, 1);
-    width: 5em;
-    margin-top: 11.5em;
-    margin-right: -1em;
+    width: 3em;
+    margin-top: 13em;
+    margin-right: -3em;
   }
 
 .animated-bar {

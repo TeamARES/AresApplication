@@ -18,7 +18,6 @@ let sidebar;
 let arm_speed;
 let arm_terminal;
 let science_motors
-let science_terminal
 let video_window_science
 let control
 let sensor
@@ -193,7 +192,7 @@ function create_arm_speed_window(){
 
 function create_science_motor_window(){
     science_motors = new BrowserWindow({
-        height: height - height_terminal, 
+        height: height, 
         width: (width - width_sidebar) - width_video, 
         show: false,
         frame: false,
@@ -202,49 +201,12 @@ function create_science_motor_window(){
         webPreferences: {
 			contextIsolation: false,
       		enableRemoteModule: true,
-            nodeIntegration: true
+			nodeIntegration: true
         }
     });
     science_motors.loadURL(`file://${__dirname}/Frontend\ Files/science_motors/index.html`);
     science_motors.on("closed", function() {
         science_motors = null;
-    });
-}
-
-function create_Terminal_science(){
-    science_terminal = new BrowserWindow({
-        height: height_terminal, 
-        width: (width - width_sidebar) - width_video, 
-        show: false,
-        frame: false,
-        x: width_sidebar + width_video,
-        y: height - height_terminal + 25,
-        webPreferences: {
-			contextIsolation: false,
-      		enableRemoteModule: true,
-            nodeIntegration: true
-        }
-    });
-    
-    science_terminal.loadURL(`file://${__dirname}/science_terminal.html`);
-    science_terminal.on("closed", function() {
-        science_terminal = null;
-    });
-
-    var ptyProcess = pty.spawn(shell, [], {
-        name: "xterm-color",
-        cols: 80,
-        rows: 30,
-        cwd: process.env.HOME,
-        env: process.env
-    });
-
-    ptyProcess.on('data', function(data) {
-        science_terminal.webContents.send("terminal.incomingData", data);
-    });
-    ptyProcess.write("python3 /Users/harshgupta/Desktop/Ares/Application/science.py");
-    ipcMain.on("terminal.keystroke", (event, key) => {
-        ptyProcess.write(key);
     });
 }
 
@@ -355,10 +317,6 @@ app.on("ready", function() {
         if (science_motors == null) 
             create_science_motor_window();
         science_motors.show();
-
-        if (science_terminal == null)
-            create_Terminal_science();
-        science_terminal.show();
         
         if (video_window_science == null)
             createVideoWindow_science()
