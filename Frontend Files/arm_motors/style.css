@@ -92,7 +92,7 @@ body{
 .image {
   
     width: 23em;
-    height: 80vh;
+    height: 90vh;
     margin-top: -8em;
     margin-left: -4em;
 }
@@ -124,7 +124,7 @@ body{
     font-size: 15px;
     font-weight: 400;
     white-space: nowrap;
-    margin-top: 8.5em;
+    margin-top: 4.5em;
     margin-left: 1em;
 }
 

@@ -1,15 +1,10 @@
-const {app, BrowserWindow, ipcMain} = require('electron')
+const {app, BrowserWindow, ipcMain, screen} = require('electron')
 const pty = require("node-pty");
 const os = require("os");
 const path = require("path");
 var shell = os.platform() === "win32" ? "powershell.exe" : "bash";
 
-var width = 1440;
-var height = 824;
-var width_sidebar = 250;
-var height_terminal = 224;
-var width_video = 700
-
+var width, height, width_sidebar, height_terminal, width_video;
 let mainWindow;
 let propulsion_speed;
 let prop_terminal;
@@ -21,6 +16,23 @@ let science_motors
 let video_window_science
 let control
 let sensor
+let dummy_window
+
+function createDummyWindow(){
+    dummy_window = new BrowserWindow({
+        frame: true,
+        webPreferences: {
+            devTools: true,
+			contextIsolation: false,
+      		enableRemoteModule: true,
+            nodeIntegration: true
+        }
+    });
+    dummy_window.loadURL(`file://${__dirname}/dummy.html`);
+    dummy_window.on("closed", function() {
+        dummy_window = null;
+    });
+}
 
 function createMainWindow(){
     mainWindow = new BrowserWindow({
@@ -111,7 +123,7 @@ function create_Terminal_propulsion(){
     ptyProcess.on('data', function(data) {
         prop_terminal.webContents.send("terminal.incomingData", data);
     });
-    ptyProcess.write("python3 /Users/harshgupta/Desktop/Ares/Application/propulsion.py");
+    ptyProcess.write("python3 propulsion.py");
     ipcMain.on("terminal.keystroke", (event, key) => {
         ptyProcess.write(key);
     });
@@ -268,8 +280,17 @@ function create_sensor_window(){
 }
 
 app.on("ready", function() {
+    createDummyWindow()
+    dummy_window.maximize();
+    width = screen.getPrimaryDisplay().workAreaSize.width;
+    height = screen.getPrimaryDisplay().workAreaSize.height;
+    width_sidebar = parseInt((17 * width) / 100);
+    height_terminal = parseInt((34 * height) / 100);
+    width_video = parseInt((50 * width) / 100);
+    console.log("width: " + width + " height: " + height + " width_sidebar: " + width_sidebar + " height_terminal: " + height_terminal + " width_video: " + width_video);
     createMainWindow();
     createSideBar();
+    dummy_window.close();
     sidebar.setAlwaysOnTop(true);
     ipcMain.on('open-propulsion', function(){
 
