@@ -88,19 +88,13 @@ body{
   height: 100vh;
   width: 100vw;
 }
-.Button {
-    background-color: rgba(22, 22, 22, 0.3);
-    border-radius: 50%;
-    border:2px solid #fff;
-    height: 50px;
-    width: 20%;
-}
 
 .image {
-    width: 25em;
+  
+    width: 23em;
     height: 80vh;
-    margin-top: 0em;
-    margin-left: -2em;
+    margin-top: -8em;
+    margin-left: -4em;
 }
 
 .VS {
@@ -121,65 +115,16 @@ body{
     border-radius: 6px;
     background-color: #019E66;
     box-shadow: 3px 3px 3px 3px rgb(0, 0, 0);
+    z-index: 100;
 }
 
-.container {
-    position: relative;
-}
-
-.label1 {
-    background-color: rgba(22, 22, 22, 0.3);;
-    width: 10em;
-    height: 10em;
-    margin-top: -23em;
-    margin-left: -24em;
-}
-
-.label2 {
-    background-color: rgba(22, 22, 22, 0.3);;
-    width: 10em;
-    height: 10em;
-    margin-top: 1em;
-    margin-left: -12em;
-}
-
-.label3 {
-    background-color: rgba(22, 22, 22, 0.3);;
-    width: 10em;
-    height: 10em;
-    margin-top: -25em;
-    margin-left: -12em;
-}
-
-.label4 {
-    background-color: rgba(22, 22, 22, 0.3);;
-    width: 10em;
-    height: 10em;
-    margin-top: 13em;
-    margin-left: 2em;
-}
-
-.label5 {
-    background-color: rgba(22, 22, 22, 0.3);;
-    width: 10em;
-    height: 10em;
-    margin-top: -22em;
-}
-
-.label6 {
-    background-color: rgba(22, 22, 22, 0.3);;
-    width: 10em;
-    height: 10em;
-    margin-top: -18em;
-    margin-left: 22em;
-}
 
 .V2 {
     color:#fff;
     font-size: 15px;
     font-weight: 400;
     white-space: nowrap;
-    margin-top: 16.5em;
+    margin-top: 8.5em;
     margin-left: 1em;
 }
 
@@ -191,83 +136,6 @@ span.name {
     color: red;
 }
 
-.line1 {
-    width: 50px;
-    height: 40px;
-    border-bottom: 2px solid #fff;
-    margin-top: -20em;
-    margin-left: 4.5em;
-    -webkit-transform:
-        translateY(-20px)
-        translateX(5px)
-        rotate(60deg); 
-    transform: translateY(-20px) translateX(5px) rotate(60deg);;
-}
-
-.line2 {
-    width: 48px;
-    height: 40px;
-    border-bottom: 2px solid #fff;
-    margin-top: -6em;
-    margin-left: 7em;
-    -webkit-transform:
-        translateY(-20px)
-        translateX(5px)
-        rotate(90deg); 
-    transform: translateY(-20px) translateX(5px) rotate(90deg); 
-}
-
-.line3 {
-    width: 38px;
-    height: 52px;
-    border-bottom: 2px solid #fff;
-    margin-top: 5.5em;
-    margin-left: 10.4em;
-    -webkit-transform:
-        translateY(-20px)
-        translateX(5px)
-        rotate(105deg); 
-    transform: translateY(-20px) translateX(5px) rotate(105deg); 
-}
-
-.line4 {
-    width: 60px;
-    height: 40px;
-    border-bottom: 2px solid #fff;
-    margin-top: 4.5em;
-    margin-left: 16.5em;
-    -webkit-transform:
-        translateY(-20px)
-        translateX(5px)
-        rotate(120deg); 
-    transform: translateY(-20px) translateX(5px) rotate(120deg); 
-}
-
-.line5 {
-    width: 40px;
-    height: 44px;
-    border-bottom: 2px solid #fff;
-    margin-top: -13.5em;
-    margin-left: 16.3em;
-    -webkit-transform:
-        translateY(-20px)
-        translateX(5px)
-        rotate(120deg); 
-    transform: translateY(-20px) translateX(5px) rotate(120deg); 
-}
-
-.line6 {
-    width: 26px;
-    height: 40px;
-    border-bottom: 2px solid #fff;
-    margin-top: -4em;
-    margin-left: 23em;
-    -webkit-transform:
-        translateY(-20px)
-        translateX(5px)
-        rotate(140deg); 
-    transform: translateY(-20px) translateX(5px) rotate(140deg);
-}
 
 .popup {
     display: flex;
@@ -280,7 +148,7 @@ span.name {
     -ms-user-select: none;
     user-select: none;
     margin-left: 24em;
-    margin-top: 3em;
+    margin-top: -14em;
     color: #fff;
   }
   
@@ -304,7 +172,7 @@ span.name {
     margin-left: -28.5em;
     font-size: 12px;
     border-radius: 8px;
-    margin-bottom: -20.5em;
+    margin-bottom: -20em;
   }
   
   .popup .popuptext::after {
@@ -312,7 +180,7 @@ span.name {
     position: absolute;
     top: 100%;
     left: 50%;
-    margin-left: 13em;
+    margin-left: 14em;
     border-width: 5px;
     border-style: solid;
     border-color: #019E66 transparent transparent transparent;
@@ -358,8 +226,8 @@ span.name {
   .I {
     background-color: rgba(22, 22, 22, 1);
     width: 3em;
-    margin-top: 12.5em;
-    margin-right: -3em;
+    margin-top: 11.8em;
+    margin-left: 2.4em;
   }
 
 .animated-bar {

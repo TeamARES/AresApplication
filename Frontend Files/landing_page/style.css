@@ -100,7 +100,7 @@ h1{
   font-weight: 300;
 }
 p {
-  font-family: "Times New Roman", Times, serif;
+  font-family: "Poppins" , sans-serif;
   text-shadow: 2px 4px 3px #019E66,
                  0px -5px 35px rgba(255,255,255,0.3);
   font-weight: 400;
@@ -108,6 +108,7 @@ p {
   color: #fff;
   font-style: italic;
   text-align: center;
+  margin-top: 0.5em;
 
 }
 .P {
@@ -221,9 +222,4 @@ body {
   width: 15em;
   margin-left : 75em;
   margin-top: -10em;
-}
-ul {
-  list-style-image:url("rover.jpg");
-  list-style-type:square;
-  margin-left: 30em;
 }
