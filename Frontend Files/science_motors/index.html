@@ -10,6 +10,15 @@
   </head>
   <body>
     <div class="container">
+      <!-- Close the image -->
+      <span onclick="this.parentElement.style.display='none'" class="closebtn">&times;</span>
+      <!-- Expanded image -->
+      <img id="expandedImg" class = "big">
+    
+      <!-- Image text -->
+      <div id="imgtext"></div>
+    </div>
+    <div class="container">
         <div class = "box">
             <h1 class = "V1"> Actuator </h1>
             <img class = "icon" src = "actuator.png" style = "width: 3.5em;">
@@ -18,10 +27,119 @@
         </div>
         <div class = "box">
             <h1 class = "V1"> Microscope </h1>
+            <!-- <input id="alpha" type="file"> -->
             <img class = "icon" src = "microscope.png" style = "margin-bottom: 0em";>
-            <button class = "btn" id="microscope"> Capture Photo </button>
+            <button class = "btn" id="microscope"> Capture Soil Image </button>
+            <button class = "btn" id="mineral"> Capture Mineral Image </button>
+
         </div>
     </div>
+    <div class="container">
+        <div class="box">
+            <h1 class = "V1"> Soil </h1>
+            <img class = "def capturedImage" style = "width: 3.8em; margin-top: 0.4em;" onclick="myFunction(this);">
+        </div>
+        <div class="box">
+            <h1 class = "V1"> Soil(Red) </h1>
+            <img class = "red capturedImage" style = "width: 3.8em; margin-top: 0.4em;" onclick="myFunction(this);">
+        </div>
+    </div>
+     <div class="container">
+        <div class="box">
+            <h1 class = "V1"> Soil(Green) </h1>
+            <img class = "green capturedImage" style = "width: 3.8em; margin-top: 0.4em;" onclick="myFunction(this);">
+        </div>
+        <div class="box">
+            <h1 class = "V1"> Soil(Blue) </h1>
+            <img class = "blue capturedImage" style = "width: 3.8em; margin-top: 0.4em;" onclick="myFunction(this);">
+        </div>
+    </div>
+
+    <div class = "container">
+        <div class = "box" style = "width: 90%; margin-bottom: 1em;">
+            <h1 class = "V1"> Soil Classification </h1>
+            <center>
+                <table>
+                    <caption>Soil Information</caption>
+                    <thead>
+                        <tr>
+                            <th> Soil Composition </th>
+                            <th> Percentage </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Sand</td>
+                            <td id="sand"></td>
+                        </tr>
+                        <tr>
+                            <td>Slit</td>
+                            <td id="slit"></td>
+                        </tr>
+                        <tr>
+                            <td>Clay</td>
+                            <td id="clay"></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <h1 class = "V2"> Final Classification of the soil is </h1>
+                <div id="finalSoil" class="V2"></div>
+            </center>
+        </div>
+    </div>
+
+
+    <div class="container">
+        <div class="box">
+            <h1 class = "V1"> Mineral </h1>
+            <img class = "def capturedImage" style = "width: 3.8em; margin-top: 0.4em;" onclick="myFunction(this);">
+        </div>
+        <div class="box">
+            <h1 class = "V1"> Mineral(Red) </h1>
+            <img class = "red capturedImage" style = "width: 3.8em; margin-top: 0.4em;" onclick="myFunction(this);">
+        </div>
+    </div>
+     <div class="container">
+        <div class="box">
+            <h1 class = "V1"> Mineral(Green) </h1>
+            <img class = "green capturedImage" style = "width: 3.8em; margin-top: 0.4em;" onclick="myFunction(this);">
+        </div>
+        <div class="box">
+            <h1 class = "V1"> Mineral(Blue) </h1>
+            <img class = "blue capturedImage" style = "width: 3.8em; margin-top: 0.4em;" onclick="myFunction(this);">
+        </div>
+    </div>
+
+
+    <div class = "container">
+        <div class = "box" style = "width: 90%; margin-bottom: 1em;">
+            <h1 class = "V1"> Mineral Classification </h1>
+            <center>
+                <table>
+                    <caption>Mineral Information</caption>
+                    <tbody>
+                        <tr>
+                            <td>Mineral Identified</td>
+                            <td id="mineralIdentified"></td>
+                        </tr>
+                        <tr>
+                            <td>Colour</td>
+                            <td id="mineralColour"></td>
+                        </tr>
+                        <tr>
+                            <td>Streak</td>
+                            <td id="streak"></td>
+                        </tr>
+                        <tr>
+                            <td>Elements</td>
+                            <td id="elements"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </center>
+        </div>
+    </div>
+
     <div class = "container">
         <div class = "box">
             <h1 class = "V1"> Drill Machine </h1>
@@ -223,5 +341,31 @@
         </div>
     </div>
     <script src = "script.js"></script>
+    <script>
+      function myFunction(imgs) {
+        var expandImg = document.getElementById("expandedImg");
+        var imgText = document.getElementById("imgtext");
+        expandImg.src = imgs.src;
+        console.log(expandImg.classList);
+        expandImg.classList.remove('red');
+        expandImg.classList.remove('green');
+        expandImg.classList.remove('blue');
+        expandImg.classList.remove('def');
+        if(imgs.classList.contains('red')){
+            expandImg.classList.add('red');
+        }
+        else if(imgs.classList.contains('blue')){
+            expandImg.classList.add('blue');
+        }
+        else if(imgs.classList.contains('green')){
+            expandImg.classList.add('green');
+        }
+        else{
+            expandImg.classList.add('def');
+        }
+        imgText.innerHTML = imgs.alt;
+        expandImg.parentElement.style.display = "block";
+      }
+      </script>
   </body>
 </html>
