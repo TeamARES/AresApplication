@@ -1,0 +1,12 @@
+certifi==2021.10.8
+charset-normalizer==2.0.9
+idna==3.3
+pynput==1.7.5
+pyobjc-core==8.1
+pyobjc-framework-ApplicationServices==8.1
+pyobjc-framework-Cocoa==8.1
+pyobjc-framework-Quartz==8.1
+requests==2.26.0
+six==1.16.0
+socket.engine==1.0.0
+urllib3==1.26.7
