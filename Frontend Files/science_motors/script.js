@@ -91,10 +91,10 @@ mineral.onclick = function () {
     // console.log(image4);
     // const input = document.getElementById('alpha');
     // const url = window.URL.createObjectURL(new Blob([input.files[0]]));
-    // image1.src = url;
-    // image2.src = url;
-    // image3.src = url;
-    // image4.src = url;
+    // min1.src = url;
+    // min2.src = url;
+    // min3.src = url;
+    // min4.src = url;
 };
 
 
