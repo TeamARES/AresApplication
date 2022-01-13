@@ -342,7 +342,6 @@ app.on("ready", function () {
     });
 
     ipcMain.on('open-science', function () {
-
         if (science_motors == null)
             create_science_motor_window();
         science_motors.show();
