@@ -43,7 +43,7 @@ microscope.onclick = function () {
 
     /* Function for Calling backend */
     axios({
-        url: 'http://192.168.30.151:8000/science?task=soil',
+        url: 'http://127.0.0.1:5000/science?task=soil',
         method: 'GET',
         responseType: 'json'
     }).then(async (response) => {
@@ -88,7 +88,7 @@ mineral.onclick = function () {
     });
     /* Function for Calling backend */
     axios({
-        url: 'http://192.168.30.151:8000/science?task=mineral',
+        url: 'http://127.0.0.1:5000/science?task=mineral',
         method: 'GET',
         responseType: 'json'
     }).then(async (response) => {
@@ -97,11 +97,6 @@ mineral.onclick = function () {
         streak.innerHTML = response.data.streak;
         elements.innerHTML = response.data.elements;
     });
-    // mineralcolour.innerHTML = "Brown";
-    // mineralidentified.innerHTML = "Aliminium";
-    // streak.innerHTML = "Black";
-    // elements.innerHTML = "Al, Fe, Xe"
-
 
     //Use for Local Testing
     // console.log(image1);
