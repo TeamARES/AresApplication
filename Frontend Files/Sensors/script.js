@@ -11,6 +11,7 @@ const temperature_dht = document.getElementById("temperature-dht")
 const methane = document.getElementById("methane")
 const ammonia = document.getElementById("ammonia")
 const moisture = document.getElementById("moisture")
+const color = document.getElementById("color")
 const acc_x = document.getElementById("acc_x")
 const acc_y = document.getElementById("acc_y")
 const acc_z = document.getElementById("acc_z")
@@ -56,6 +57,21 @@ function getAcc_yData(){
 }
 function getAcc_zData(){
     return parseFloat(Math.random()).toFixed(2);
+}
+function getColor_xData(){
+    let resp= parseFloat(Math.random());
+    resp=(resp*0.3)+0.6;
+    return resp.toFixed(2);
+}
+function getColor_yData(){
+    let resp= parseFloat(Math.random());
+    resp=(resp*0.4)+0.1;
+    return resp.toFixed(2);
+}
+function getColor_zData(){
+    let resp= parseFloat(Math.random());
+    resp=(resp*0.4)+0.1;
+    return resp.toFixed(2);
 }
 function getAV_xData(){
     return parseFloat(Math.random()).toFixed(2);
@@ -285,6 +301,27 @@ var layout_acc = {
         linewidth: 2
     }
 };
+var layout_color = {
+    width: 500,
+    height: 500,
+    paper_bgcolor: "rgba(22, 22, 22, 1)",
+    plot_bgcolor: "rgba(22, 22, 22, 1)",
+    font: {
+        color: "#fff"
+    },
+    colorway: ["#019E66", "#fff", "#000"],
+    title: "Color Density", 
+    xaxis: {
+        title: "Time(s)",
+        linecolor: "#fff",
+        linewidth: 2
+    }, 
+    yaxis: {
+        title: "Color density", 
+        linecolor: "#fff",
+        linewidth: 2
+    }
+};
 var layout_av = {
     width: 500,
     height: 500,
@@ -389,6 +426,23 @@ Plotly.newPlot("acc-graph", [{
     line: {color : "#019E66"}
 }] , layout_acc);
 
+Plotly.newPlot("color-graph", [{
+    y: [1, 2, 3].map(getColor_xData),
+    name: "X", 
+    mode: 'lines', 
+    line: {color : "rgb(255,0,0)"}
+}, {
+    y: [1, 2].map(getColor_yData),
+    name: "Y", 
+    mode: 'lines',
+    line: {color : "rgb(0,255,0)" }
+}, {
+    y: [1].map(getAcc_zData),
+    name: "Z", 
+    mode: 'lines',
+    line: {color : "rgb(0,0,255)"}
+}] , layout_color);
+
 Plotly.newPlot("av-graph", [{
     y: [1, 2, 3].map(getAV_xData),
     name: "X", 
@@ -461,6 +515,15 @@ setInterval(function(){
     acc_x.innerHTML = accx;
     acc_y.innerHTML = accy;
     acc_z.innerHTML = accz;
+    var colorx = getColor_xData()
+    var colory = getColor_yData()
+    var colorz = getColor_zData()
+    Plotly.extendTraces("color-graph", {
+        y: [[colorx], [colory], [colorz]]
+    }, [0, 1, 2]);
+    color_x.innerHTML = colorx;
+    color_y.innerHTML = colory;
+    color_z.innerHTML = colorz;
     var avx = getAV_xData()
     var avy = getAV_yData()
     var avz = getAV_zData()
@@ -553,6 +616,14 @@ setInterval(function(){
             }
         });
         Plotly.relayout("acc-graph", {
+            xaxis: {
+                range: [cnt-interval, cnt],
+                title: "Time(s)",
+                linecolor: "#fff",
+                linewidth: 2
+            }
+        });
+        Plotly.relayout("color-graph", {
             xaxis: {
                 range: [cnt-interval, cnt],
                 title: "Time(s)",

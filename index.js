@@ -1,5 +1,10 @@
 const { app, BrowserWindow, ipcMain, screen } = require('electron')
-const pty = require("node-pty");
+let pty;
+try {
+  pty = require('node-pty');
+} catch (outerError) {
+  console.error('outerError', outerError);
+}
 const os = require("os");
 const path = require("path");
 var shell = os.platform() === "win32" ? "powershell.exe" : "bash";
